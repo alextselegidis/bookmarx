@@ -1,0 +1,40 @@
+/* ----------------------------------------------------------------------------
+ * Bookmarx - Open Source Telemetry
+ *
+ * @package     Bookmarx
+ * @author      A.Tselegidis <alextselegidis@gmail.com>
+ * @copyright   Copyright (c) Alex Tselegidis
+ * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
+ * @link        https://bookmarx.org
+ * ---------------------------------------------------------------------------- */
+
+:root {
+    --bs-link-color: #563ea9;
+    --bs-link-color-rgb: 86, 62, 169;
+    --bs-link-hover-color: #2d1e60;
+    --bs-link-hover-color-rgb: 45, 30, 96;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.bg-hover:hover {
+    background-color: #eee;
+}
+
+.sidebar-width {
+    width: 230px;
+    padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+    .rounded-lg-4 {
+        border-radius: var(--bs-border-radius-xl) !important;
+    }
+
+    .min-vh-lg-unset {
+        min-height: unset !important;
+    }
+}
