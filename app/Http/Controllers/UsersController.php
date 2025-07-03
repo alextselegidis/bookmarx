@@ -95,17 +95,17 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect(route('users.show', $user->id))->with('success', __('User updated successfully.'));
+        return redirect(route('users.show', $user->id))->with('success', __('recordSavedMessage'));
     }
 
     public function destroy(Request $request, User $user)
     {
         if ($user->id === request()->user()->id) {
-            return redirect()->route('users')->with('error', __('cannotDeleteCurrentUser.'));
+            return redirect()->route('users')->with('error', __('cannotDeleteCurrentUser'));
         }
 
         $user->delete();
 
-        return redirect()->route('users')->with('success', __('recordDeleted.'));
+        return redirect()->route('users')->with('success', __('recordDeletedMessage'));
     }
 }
