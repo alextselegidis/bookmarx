@@ -205,5 +205,6 @@
     "actions": "Actions",
     "id": "ID",
     "general": "General",
+    "count": "Count",
     "EOF": "EOF"
 }

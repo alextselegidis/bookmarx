@@ -5,9 +5,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ObserversController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -62,9 +62,9 @@ Route::middleware('auth')->group(function () {
         'index' => 'users',
     ]);
 
-    // ObserversController
+    // TagsController
 
-    Route::resource('observers', ObserversController::class)->names([
-        'index' => 'observers',
+    Route::resource('tags', TagsController::class)->names([
+        'index' => 'tags',
     ]);
 });

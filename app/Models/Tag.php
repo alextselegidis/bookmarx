@@ -24,4 +24,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Link::class, 'link_tag');
     }
+
+    public function getCountAttribute()
+    {
+        return $this->links()->count();
+    }
 }
