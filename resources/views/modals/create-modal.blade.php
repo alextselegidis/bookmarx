@@ -10,6 +10,12 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
+{{--
+    @var string $route Target store route
+    @var string $input_name The model name to be typed
+    @var string $input_type The type of input for the field
+--}}
+
 <div class="modal" tabindex="-1" id="create-modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -27,11 +33,16 @@
 
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">
-                            {{ __('name') }}
+                        <label for="{{$input_name ?? 'name'}}" class="form-label">
+                            {{ __($input_name ?? 'name') }}
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+                        <input type="{{$input_type ?? 'text'}}"
+                               id="{{$input_name ?? 'name'}}"
+                               name="{{$input_name ?? 'name'}}"
+                               class="form-control"
+                               required
+                               autofocus>
                     </div>
                 </div>
 
@@ -48,3 +59,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    document
+        .getElementById('create-modal')
+        .addEventListener('shown.bs.modal', (event) => event.target.querySelector('#{{$input_name ?? 'name'}}').focus());
+</script>
