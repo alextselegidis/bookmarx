@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
+                <div class="bg-light justify-content-center modal-footer">
                     <a class="btn btn-secondary" data-bs-dismiss="modal">
                         {{__('close')}}
                     </a>

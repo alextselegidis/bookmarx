@@ -114,6 +114,7 @@
         </h1>
     @endif
 
+    @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
 
 @endsection
 
