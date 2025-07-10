@@ -12,6 +12,7 @@
 
 {{--
     @var string $route Target store route
+    @var string $title Modal title
     @var string $input_name The model name to be typed
     @var string $input_type The type of input for the field
 --}}
@@ -26,7 +27,7 @@
 
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        {{__('create')}}
+                        {{$title ?? __('create')}}
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

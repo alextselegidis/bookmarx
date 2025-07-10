@@ -65,6 +65,8 @@
                     @enderror
                 </div>
 
+                @if($tags->count())
+
                 <h4>{{__('tags')}}</h4>
 
                 @foreach ($tags as $tag)
@@ -81,6 +83,8 @@
                         <label for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
                     </div>
                 @endforeach
+                @endif
+
 
                 <div class="d-flex gap-2 justify-content-end">
                     <button type="button" class="btn btn-outline-primary" onclick="history.back()">

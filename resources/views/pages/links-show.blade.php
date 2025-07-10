@@ -46,6 +46,12 @@
         <div class="flex-grow-1">
 
             <div class="mb-3">
+                @if ($link->favicon)
+                    <div class="mb-3">
+                    <img src="data:image/x-icon;base64,{{ $link->favicon }}" width="32" height="32">
+                    </div>
+                @endif
+
                 <h5>
                 {{__('url')}}
                 </h5>

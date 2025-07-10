@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('meta_author')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->string('theme_color')->nullable();
+            $table->binary('favicon')->nullable();
             $table->string('og_title')->nullable();
             $table->text('og_description')->nullable();
             $table->string('og_type')->nullable();

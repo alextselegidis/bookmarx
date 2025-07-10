@@ -15,10 +15,9 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Models\Tag;
 use DOMDocument;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class LinksController extends Controller
 {
@@ -103,13 +102,26 @@ class LinksController extends Controller
         return redirect()->route('links')->with('success', __('recordDeletedMessage'));
     }
 
-    private function fetchPageInfo(string $url): array
+    public function read(Request $request, Link $link)
     {
-        // Get the raw HTML
+        $link->is_read = !$link->is_read;
+        $link->save();
+        return redirect()->back()->with('success', __('recordSavedMessage'));
+    }
+
+    public function archive(Request $request, Link $link)
+    {
+        $link->is_archived = !$link->is_archived;
+        $link->save();
+        return redirect()->back()->with('success', __('recordSavedMessage'));
+    }
+
+    function fetchPageInfo(string $url): array
+    {
+        // Fetch HTML
         $response = Http::get($url);
         $html = $response->body();
 
-        // Suppress warnings from malformed HTML
         libxml_use_internal_errors(true);
         $dom = new DOMDocument();
         $dom->loadHTML($html);
@@ -118,7 +130,7 @@ class LinksController extends Controller
         $data = [
             'title' => '',
             'url' => $url,
-            'notes' => '', // Placeholder if needed
+            'notes' => '',
             'meta_description' => '',
             'meta_author' => '',
             'meta_keyword' => '',
@@ -129,22 +141,21 @@ class LinksController extends Controller
             'og_url' => '',
             'og_image' => '',
             'og_site_name' => '',
+            'favicon' => null, // base64-encoded favicon content
         ];
 
-        // Extract <title>
+        // <title>
         $titleTag = $dom->getElementsByTagName('title');
         if ($titleTag->length) {
             $data['title'] = $titleTag->item(0)->nodeValue;
         }
 
-        // Extract meta tags
-        $metaTags = $dom->getElementsByTagName('meta');
-        foreach ($metaTags as $meta) {
-            $name = $meta->getAttribute('name');
-            $property = $meta->getAttribute('property');
+        // <meta> tags
+        foreach ($dom->getElementsByTagName('meta') as $meta) {
+            $name = strtolower($meta->getAttribute('name') ?: $meta->getAttribute('property'));
             $content = $meta->getAttribute('content');
 
-            switch (strtolower($name ?: $property)) {
+            switch ($name) {
                 case 'description':
                     $data['meta_description'] = $content;
                     break;
@@ -176,6 +187,32 @@ class LinksController extends Controller
                     $data['og_site_name'] = $content;
                     break;
             }
+        }
+
+        // <link rel="icon"> or fallback
+        $faviconUrl = null;
+        foreach ($dom->getElementsByTagName('link') as $link) {
+            $rel = strtolower($link->getAttribute('rel'));
+            if (str_contains($rel, 'icon')) {
+                $href = $link->getAttribute('href');
+                $faviconUrl = parse_url($href, PHP_URL_HOST) ? $href : rtrim($url, '/') . '/' . ltrim($href, '/');
+                break;
+            }
+        }
+
+        if (!$faviconUrl) {
+            $faviconUrl = rtrim($url, '/') . '/favicon.ico'; // fallback
+        }
+
+        // Download and encode favicon
+        try {
+            $faviconResponse = Http::get($faviconUrl);
+            if ($faviconResponse->successful()) {
+                $faviconBinary = $faviconResponse->body();
+                $data['favicon'] = base64_encode($faviconBinary);
+            }
+        } catch (Exception $e) {
+            // leave favicon as null
         }
 
         return $data;

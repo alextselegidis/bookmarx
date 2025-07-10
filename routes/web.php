@@ -74,4 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('links', LinksController::class)->names([
         'index' => 'links',
     ]);
+
+    Route::get('/links/{link}/read', [LinksController::class, 'read'])->name('links.read');
+    Route::get('/links/{link}/archive', [LinksController::class, 'archive'])->name('links.archive');
 });

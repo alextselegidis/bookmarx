@@ -42,3 +42,16 @@ body {
         min-height: unset !important;
     }
 }
+
+.card-hover-move {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-hover-move:hover {
+    transform: translateY(-5px);
+}
+
+.card .card-footer a {
+    position: relative;
+    z-index: 1;
+}

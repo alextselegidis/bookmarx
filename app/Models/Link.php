@@ -24,6 +24,7 @@ class Link extends Model
         'meta_author',
         'meta_keyword',
         'theme_color',
+        'favicon',
         'og_title',
         'og_description',
         'og_type',
