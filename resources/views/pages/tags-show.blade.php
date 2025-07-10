@@ -43,12 +43,13 @@
             @include('shared.settings-sidebar')
         </div>
 
-        <div class="flex-grow-1">
-            <div class="mb-3">
-                {{__('count')}}:
-                {{__($tag->count)}}
-            </div>
+        <div class="mb-3">
+            <h5>
+                {{__('count')}}
+            </h5>
+            {{$link->count}}
         </div>
+
     </div>
 
 @endsection

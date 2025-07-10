@@ -19,9 +19,9 @@
     </li>
 
     <li class="nav-item mb-3">
-        <a class="nav-link px-0 py-2" href="{{ route('users') }}">
-            <i class="bi bi-people me-2"></i>
-            {{__('users')}}
+        <a class="nav-link px-0 py-2" href="{{ route('links') }}">
+            <i class="bi bi-link-45deg me-2"></i>
+            {{__('links')}}
         </a>
     </li>
 
@@ -29,6 +29,13 @@
         <a class="nav-link px-0 py-2" href="{{ route('tags') }}">
             <i class="bi bi-tags me-2"></i>
             {{__('tags')}}
+        </a>
+    </li>
+
+    <li class="nav-item mb-3">
+        <a class="nav-link px-0 py-2" href="{{ route('users') }}">
+            <i class="bi bi-people me-2"></i>
+            {{__('users')}}
         </a>
     </li>
 </ul>

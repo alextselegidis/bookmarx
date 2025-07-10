@@ -206,5 +206,7 @@
     "id": "ID",
     "general": "General",
     "count": "Count",
+    "read": "Read",
+    "archived": "Archived",
     "EOF": "EOF"
 }

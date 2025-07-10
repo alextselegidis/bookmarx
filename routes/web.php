@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LinksController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RecoveryController;
@@ -66,5 +67,11 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('tags', TagsController::class)->names([
         'index' => 'tags',
+    ]);
+
+    // LinksController
+
+    Route::resource('links', LinksController::class)->names([
+        'index' => 'links',
     ]);
 });

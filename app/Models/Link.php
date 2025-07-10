@@ -16,7 +16,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-    protected $fillable = ['title', 'url', 'notes', 'is_read', 'is_archived'];
+    protected $fillable = [
+        'title',
+        'url',
+        'notes',
+        'meta_description',
+        'meta_author',
+        'meta_keyword',
+        'theme_color',
+        'og_title',
+        'og_description',
+        'og_type',
+        'og_url',
+        'og_image',
+        'og_site_name',
+        'is_read',
+        'is_archived',
+    ];
 
     protected $casts = [
         'is_read' => 'boolean',
@@ -26,5 +42,15 @@ class Link extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'link_tag');
+    }
+
+    public function getFormattedTagsAttribute()
+    {
+        return $this->tags()->pluck('name')->implode(', ');
+    }
+
+    public function getFormattedUrlAttribute()
+    {
+        return str_replace(['https://', 'http://'], '', rtrim($this->url, '/'));
     }
 }

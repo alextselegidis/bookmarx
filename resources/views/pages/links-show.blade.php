@@ -13,16 +13,16 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('user')}}: {{$user->name}}
+    {{__('link')}}: {{$link->title}}
 @endsection
 
 @section('pageActions')
-    <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="nav-link me-lg-3">
+    <a href="{{ route('links.edit', ['link' => $link->id]) }}" class="nav-link me-lg-3">
         <i class="bi bi-pencil me-2"></i>
         {{__('edit')}}
     </a>
 
-    <form action="{{route('users.destroy', $user->id)}}"
+    <form action="{{route('links.destroy', $link->id)}}"
           method="POST"
           onsubmit="return confirm('{{__('deleteRecordPrompt')}}')">
         @csrf
@@ -47,20 +47,39 @@
 
             <div class="mb-3">
                 <h5>
-                    {{__('email')}}
+                {{__('url')}}
                 </h5>
-                <a href="mailto:{{$user->email}}">
-                    <i class="bi bi-envelope me-2"></i>
-                    {{$user->email}}
+                <a href="{{$link->url}}" target="_blank">
+                    {{$link->formatted_url}}
                 </a>
             </div>
 
             <div class="mb-3">
                 <h5>
-                    {{__('active')}}
+                    {{__('tags')}}
                 </h5>
-                {{__($user->is_active ? 'yes' : 'no')}}
+                {{$link->formatted_tags}}
+            </div>
 
+            <div class="mb-3">
+                <h5>
+                    {{__('notes')}}
+                </h5>
+                {{$link->notes}}
+            </div>
+
+            <div class="mb-3">
+                <h5>
+                    {{__('read')}}
+                </h5>
+                {{__($link->is_read ? 'yes' : 'no')}}
+            </div>
+
+            <div class="mb-3">
+                <h5>
+                    {{__('archived')}}
+                </h5>
+                {{__($link->is_archived ? 'yes' : 'no')}}
             </div>
 
         </div>
