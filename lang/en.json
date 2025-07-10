@@ -208,5 +208,7 @@
     "count": "Count",
     "read": "Read",
     "archived": "Archived",
+    "noRecordsFound": "No Records Found",
+    "addNewLink": "Add A New Link",
     "EOF": "EOF"
 }

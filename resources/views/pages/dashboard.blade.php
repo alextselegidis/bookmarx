@@ -55,6 +55,8 @@
         </div>
     </div>
 
+    @if ($links->count())
+
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($links as $link)
@@ -96,10 +98,6 @@
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                            <a href="{{route('links.read', ['link' => $link])}}" class="ms-3">
-                                <i class="bi bi-check-square"></i>
-                            </a>
-
                             <a href="{{route('links.archive', ['link' => $link])}}" class="ms-3">
                                 <i class="bi bi-archive"></i>
                             </a>
@@ -109,8 +107,13 @@
             @endforeach
         </div>
     </div>
+    @else
+        <h1 class="text-center my-5 py-5 d-flex align-items-center justify-content-center display-1 fw-light">
+            <i class="bi bi-link-45deg  me-3"></i>
+            {{__('addNewLink')}}
+        </h1>
+    @endif
 
-    @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
 
 @endsection
 
