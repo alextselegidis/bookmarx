@@ -25,6 +25,37 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="{{route('dashboard')}}" method="GET" class="mb-3">
+                    @csrf
+                    @method('GET')
+                    <div class="input-group mb-3">
+                    <span class="bg-body-tertiary input-group-text px-3">
+                        <i class="bi bi-search"></i>
+                    </span>
+                        <input type="text" id="q" name="q" class="form-control bg-body-tertiary border-start-0"
+                               value="{{$q}}"
+                               placeholder="{{__('search')}}" autofocus tabindex="-1" style="max-width: 300px;">
+                    </div>
+                </form>
+
+            </div>
+            @php
+                $toggleArchivedUrl = request()->fullUrlWithQuery([
+                    'show_archived' => $showArchived ? 0 : 1,
+                ]);
+            @endphp
+
+            <div class="col text-lg-end">
+                <a href="{{ $toggleArchivedUrl }}" class="btn btn-sm btn-outline-primary">
+                    {{ $showArchived ? 'Hide Archived' : 'Show Archived' }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($links as $link)
                 <div class="col">

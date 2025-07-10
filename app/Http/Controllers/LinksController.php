@@ -102,13 +102,6 @@ class LinksController extends Controller
         return redirect()->route('links')->with('success', __('recordDeletedMessage'));
     }
 
-    public function read(Request $request, Link $link)
-    {
-        $link->is_read = !$link->is_read;
-        $link->save();
-        return redirect()->back()->with('success', __('recordSavedMessage'));
-    }
-
     public function archive(Request $request, Link $link)
     {
         $link->is_archived = !$link->is_archived;

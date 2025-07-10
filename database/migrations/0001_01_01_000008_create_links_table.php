@@ -27,7 +27,6 @@ return new class extends Migration {
             $table->string('og_url')->nullable();
             $table->string('og_image')->nullable();
             $table->string('og_site_name')->nullable();
-            $table->boolean('is_read')->default(false);
             $table->boolean('is_archived')->default(false);
         });
     }

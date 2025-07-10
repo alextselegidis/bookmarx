@@ -31,12 +31,10 @@ class Link extends Model
         'og_url',
         'og_image',
         'og_site_name',
-        'is_read',
         'is_archived',
     ];
 
     protected $casts = [
-        'is_read' => 'boolean',
         'is_archived' => 'boolean',
     ];
 

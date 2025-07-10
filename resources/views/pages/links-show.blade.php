@@ -76,13 +76,6 @@
 
             <div class="mb-3">
                 <h5>
-                    {{__('read')}}
-                </h5>
-                {{__($link->is_read ? 'yes' : 'no')}}
-            </div>
-
-            <div class="mb-3">
-                <h5>
                     {{__('archived')}}
                 </h5>
                 {{__($link->is_archived ? 'yes' : 'no')}}

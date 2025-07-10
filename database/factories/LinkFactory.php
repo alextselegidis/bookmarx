@@ -30,13 +30,13 @@ class LinkFactory extends Factory
             'meta_author' => fake()->name(),
             'meta_keyword' => fake()->word(),
             'theme_color' => fake()->color(),
+            'favicon' => null,
             'og_title' => fake()->sentence(),
             'og_description' => fake()->text(),
             'og_type' => fake()->word(),
             'og_url' => fake()->url(),
             'og_image' => fake()->url(),
             'og_site_name' => fake()->name(),
-            'is_read' => fake()->boolean(),
             'is_archived' => fake()->boolean(),
         ];
     }
