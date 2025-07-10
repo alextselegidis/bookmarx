@@ -59,9 +59,7 @@
                         </a>
                     </th>
                     <th style="width: 45%">
-                        <a href="{{ route('tags', ['sort' => 'email', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
-                            {!! sort_link('count', __('count')) !!}
-                        </a>
+                        {{__('count')}}
                     </th>
                     <th>
                         <!-- Actions -->
