@@ -48,7 +48,7 @@
             <table class="table table- table-hover">
                 <thead>
                 <tr>
-                    <th style="width: 20%">
+                    <th style="width: 10%">
                         <a href="{{ route('tags', ['sort' => 'id', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
                             {!! sort_link('id', __('id')) !!}
                         </a>
