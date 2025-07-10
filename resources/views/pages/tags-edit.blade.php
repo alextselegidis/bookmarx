@@ -13,7 +13,7 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('tag')}}: {{$tag->name}}
+    {{__('edit')}}: {{$tag->name}}
 @endsection
 
 @section('content')
