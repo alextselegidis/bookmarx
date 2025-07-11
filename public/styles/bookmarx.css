@@ -34,6 +34,19 @@ body {
     padding-right: 15px;
 }
 
+.table {
+    width: auto;
+    table-layout: auto;
+}
+
+.table td, .table th {
+    padding: 1rem;
+    white-space: nowrap; /* Prevent wrapping */
+    width: 1%;            /* Shrink to fit content */
+}
+
+
+
 @media (min-width: 992px) {
     .rounded-lg-4 {
         border-radius: var(--bs-border-radius-xl) !important;
@@ -41,6 +54,10 @@ body {
 
     .min-vh-lg-unset {
         min-height: unset !important;
+    }
+
+    .w-lg-auto {
+        width: auto !important;
     }
 }
 

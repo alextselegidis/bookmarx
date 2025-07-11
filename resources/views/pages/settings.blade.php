@@ -18,13 +18,13 @@
 
 @section('content')
 
-    <div class="d-flex">
+    <div class="d-flex flex-column-reverse flex-lg-row">
 
         <div class="flex-grow-0 sidebar-width">
             @include('shared.settings-sidebar')
         </div>
 
-        <div class="flex-grow-1">
+        <div class="flex-grow-1 mb-5 mb-lg-0">
 
             <form action="{{route('settings.update')}}" method="POST" class="m-auto" style="max-width: 600px">
                 @csrf

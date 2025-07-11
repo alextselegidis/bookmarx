@@ -24,8 +24,8 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col">
+    <div class="row mb-3 mb-lg-0">
+        <div class="col-lg-6">
             <form action="{{route('dashboard')}}" method="GET" class="mb-3">
                 @csrf
                 @method('GET')
@@ -46,8 +46,8 @@
             ]);
         @endphp
 
-        <div class="col text-lg-end">
-            <a href="{{ $toggleArchivedUrl }}" class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}}">
+        <div class="col-lg-6 text-lg-end">
+            <a href="{{ $toggleArchivedUrl }}" class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}} w-100 w-lg-auto">
                 {{ __($showArchived ? 'hideArchived' : 'showArchived') }}
             </a>
         </div>
