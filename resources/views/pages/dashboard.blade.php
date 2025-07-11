@@ -116,8 +116,8 @@
         </div>
     @else
         <h1 class="text-center my-5 py-5 d-flex align-items-center justify-content-center display-1 fw-light">
-            <i class="bi bi-link-45deg  me-3"></i>
-            {{__('addNewLink')}}
+            <i class="bi bi-search me-4"></i>
+            {{__('noLinksFound')}}
         </h1>
     @endif
 
