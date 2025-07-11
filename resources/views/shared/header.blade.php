@@ -17,7 +17,7 @@
 
                     <div class="collapse navbar-collapse ms-md-4" id="top-nav">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
-                            <li class="nav-item dropdown ms-md-auto">
+                            <li class="nav-item dropdown ms-md-auto me-0">
                                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     <i class="bi bi-person me-2"></i>
