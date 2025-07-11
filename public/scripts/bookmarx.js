@@ -10,15 +10,13 @@
 
 // Auto-hide alert
 
-setTimeout(() => {
-    const alertNodeList = document.querySelectorAll('.alert');
-    if (alertNodeList.length) {
-        Array.from(alertNodeList).forEach((alertEl) => {
-            const bsAlert = bootstrap.Alert.getOrCreateInstance(alertEl);
-            bsAlert.close();
-        });
-    }
-}, 3000); // 3000 ms = 3 seconds
+document.querySelectorAll('.toast').forEach(function (toastEl) {
+    const toast = new bootstrap.Toast(toastEl, {
+        autohide: true,
+        delay: 3000,
+    });
+    toast.show();
+});
 
 // Auto-focus create modal input
 
