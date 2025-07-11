@@ -93,6 +93,6 @@ class TagsController extends Controller
     {
         $tag->delete();
 
-        return redirect()->route('tags')->with('success', __('recordDeletedMessage'));
+        return redirect()->back()->with('success', __('recordDeletedMessage'));
     }
 }

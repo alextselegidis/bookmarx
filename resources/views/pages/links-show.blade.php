@@ -13,7 +13,7 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('link')}}: {{$link->title}}
+    {{$link->title}}
 @endsection
 
 @section('pageActions')
@@ -45,41 +45,14 @@
 
         <div class="flex-grow-1">
 
-            <div class="mb-3">
-                @if ($link->favicon)
-                    <div class="mb-3">
-                    <img src="data:image/x-icon;base64,{{ $link->favicon }}" width="32" height="32">
-                    </div>
-                @endif
-
-                <h5>
-                {{__('url')}}
-                </h5>
-                <a href="{{$link->url}}" target="_blank">
-                    {{$link->formatted_url}}
-                </a>
-            </div>
-
-            <div class="mb-3">
-                <h5>
-                    {{__('tags')}}
-                </h5>
-                {{$link->formatted_tags}}
-            </div>
-
-            <div class="mb-3">
-                <h5>
-                    {{__('notes')}}
-                </h5>
-                {{$link->notes}}
-            </div>
-
-            <div class="mb-3">
-                <h5>
-                    {{__('archived')}}
-                </h5>
-                {{__($link->is_archived ? 'yes' : 'no')}}
-            </div>
+            @include('shared.show-title', ['title' => $link->title, 'icon' => $link->favicon])
+            @include('shared.show-id', ['label' => __('id'), 'value' => $link->id])
+            @include('shared.show-value', ['label' => __('title'), 'value' => $link->title])
+            @include('shared.show-link', ['label' => __('url'), 'href' => $link->url, 'value' => $link->formatted_url])
+            @include('shared.show-date', ['label' => __('created'), 'value' => $link->created_at])
+            @include('shared.show-value', ['label' => __('tags'), 'value' => $link->formatted_tags])
+            @include('shared.show-bool', ['label' => __('archived'), 'value' => $link->is_archived])
+            @include('shared.show-value', ['label' => __('notes'), 'value' => $link->notes])
 
         </div>
     </div>

@@ -13,7 +13,7 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('tag')}}: {{$tag->name}}
+    {{$tag->name}}
 @endsection
 
 @section('pageActions')
@@ -43,11 +43,13 @@
             @include('shared.settings-sidebar')
         </div>
 
-        <div class="mb-3">
-            <h5>
-                {{__('count')}}
-            </h5>
-            {{$link->count}}
+        <div class="flex-grow-1">
+
+            @include('shared.show-title', ['title' => $tag->name])
+            @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
+            @include('shared.show-date', ['label' => __('created'), 'value' => $tag->created_at])
+            @include('shared.show-value', ['label' => __('count'), 'value' => $tag->count])
+
         </div>
 
     </div>

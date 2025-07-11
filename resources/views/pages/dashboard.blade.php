@@ -24,51 +24,48 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <form action="{{route('dashboard')}}" method="GET" class="mb-3">
-                    @csrf
-                    @method('GET')
-                    <div class="input-group mb-3">
-                    <span class="bg-body-tertiary input-group-text px-3">
-                        <i class="bi bi-search"></i>
-                    </span>
-                        <input type="text" id="q" name="q" class="form-control bg-body-tertiary border-start-0"
-                               value="{{$q}}"
-                               placeholder="{{__('search')}}" autofocus tabindex="-1" style="max-width: 300px;">
-                    </div>
-                </form>
+    <div class="row">
+        <div class="col">
+            <form action="{{route('dashboard')}}" method="GET" class="mb-3">
+                @csrf
+                @method('GET')
+                <div class="input-group mb-3">
+                <span class="bg-body-tertiary input-group-text px-3">
+                    <i class="bi bi-search"></i>
+                </span>
+                    <input type="text" id="q" name="q" class="form-control bg-body-tertiary border-start-0"
+                           value="{{$q}}"
+                           placeholder="{{__('search')}}" autofocus tabindex="-1" style="max-width: 300px;">
+                </div>
+            </form>
 
-            </div>
-            @php
-                $toggleArchivedUrl = request()->fullUrlWithQuery([
-                    'show_archived' => $showArchived ? 0 : 1,
-                ]);
-            @endphp
+        </div>
+        @php
+            $toggleArchivedUrl = request()->fullUrlWithQuery([
+                'show_archived' => $showArchived ? 0 : 1,
+            ]);
+        @endphp
 
-            <div class="col text-lg-end">
-                <a href="{{ $toggleArchivedUrl }}" class="btn btn-sm btn-outline-primary">
-                    {{ $showArchived ? 'Hide Archived' : 'Show Archived' }}
-                </a>
-            </div>
+        <div class="col text-lg-end">
+            <a href="{{ $toggleArchivedUrl }}" class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}}">
+                {{ __($showArchived ? 'hideArchived' : 'showArchived') }}
+            </a>
         </div>
     </div>
 
     @if ($links->count())
 
-    <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($links as $link)
                 <div class="col">
                     <div class="card h-100 shadow-sm card-hover-move position-relative"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                         @if ($link->favicon)
-                            <img src="data:image/x-icon;base64,{{ $link->favicon }}" class="card-img-top p-2"
-                                 alt="Favicon" style="width: 100%; height: 150px; object-fit: cover;">
+                            <img src="data:image/x-icon;base64,{{ $link->favicon }}" class="card-img-top bg-light p-2"
+                                 alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @else
-                            <img src="{{ url('images/logo.png') }}" class="card-img-top p-2"
-                                 alt="Favicon" style="width: 100%; height: 150px; object-fit: cover;">
+                            <img src="{{ url('images/logo.png') }}" class="card-img-top bg-light p-2"
+                                 alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @endif
 
                         <div class="card-body">
@@ -99,14 +96,24 @@
                             </a>
 
                             <a href="{{route('links.archive', ['link' => $link])}}" class="ms-3">
-                                <i class="bi bi-archive"></i>
+                                <i class="bi bi-{{$link->is_archived ? 'archive-fill' : 'archive'}}"></i>
                             </a>
+
+                            <form action="{{route('links.destroy', $link->id)}}"
+                                  method="POST"
+                                  class="ms-3"
+                                  onsubmit="return confirm('{{__('deleteRecordPrompt')}}')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-    </div>
     @else
         <h1 class="text-center my-5 py-5 d-flex align-items-center justify-content-center display-1 fw-light">
             <i class="bi bi-link-45deg  me-3"></i>

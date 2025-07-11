@@ -13,7 +13,7 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('edit')}}: {{$user->name}}
+    {{$user->name}}
 @endsection
 
 @section('content')

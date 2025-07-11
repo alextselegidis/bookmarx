@@ -60,9 +60,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document
-        .getElementById('create-modal')
-        .addEventListener('shown.bs.modal', (event) => event.target.querySelector('#{{$input_name ?? 'name'}}').focus());
-</script>

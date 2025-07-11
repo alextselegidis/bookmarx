@@ -13,7 +13,7 @@
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{__('user')}}: {{$user->name}}
+    {{$user->name}}
 @endsection
 
 @section('pageActions')
@@ -45,23 +45,11 @@
 
         <div class="flex-grow-1">
 
-            <div class="mb-3">
-                <h5>
-                    {{__('email')}}
-                </h5>
-                <a href="mailto:{{$user->email}}">
-                    <i class="bi bi-envelope me-2"></i>
-                    {{$user->email}}
-                </a>
-            </div>
-
-            <div class="mb-3">
-                <h5>
-                    {{__('active')}}
-                </h5>
-                {{__($user->is_active ? 'yes' : 'no')}}
-
-            </div>
+            @include('shared.show-title', ['title' => $user->name])
+            @include('shared.show-id', ['label' => __('id'), 'value' => $user->id])
+            @include('shared.show-link', ['label' => __('email'), 'href' => 'mailto:' . $user->email, 'value' => $user->email])
+            @include('shared.show-date', ['label' => __('created'), 'value' => $user->created_at])
+            @include('shared.show-bool', ['label' => __('active'), 'value' => $user->is_active])
 
         </div>
     </div>

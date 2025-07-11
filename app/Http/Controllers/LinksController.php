@@ -99,7 +99,7 @@ class LinksController extends Controller
     {
         $link->delete();
 
-        return redirect()->route('links')->with('success', __('recordDeletedMessage'));
+        return redirect()->back()->with('success', __('recordDeletedMessage'));
     }
 
     public function archive(Request $request, Link $link)

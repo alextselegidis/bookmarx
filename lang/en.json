@@ -210,5 +210,9 @@
     "archived": "Archived",
     "noRecordsFound": "No Records Found",
     "addNewLink": "Add A New Link",
+    "showArchived": "Show Archived",
+    "hideArchived": "Hide Archived",
+    "created": "Created",
+    "updated": "Updated",
     "EOF": "EOF"
 }
