@@ -1,86 +1,65 @@
 <?php
 
-/* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
- *
- * @package     Bookmarx
- * @author      A.Tselegidis <alextselegidis@gmail.com>
- * @copyright   Copyright (c) Alex Tselegidis
- * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
- * ---------------------------------------------------------------------------- */
-
 namespace App\Policies;
 
-use App\Enums\RoleEnum;
 use App\Models\Tag;
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class TagPolicy
 {
     /**
-     * Perform pre-authorization checks.
+     * Determine whether the user can view any models.
      */
-    public function before(Tag $tag, string $ability): bool|null
-    {
-        if ($tag->role === RoleEnum::ADMIN->value) {
-            return true;
-        }
-
-        return null;
-    }
-
-    /**
-     * Determine whether the tag can view any models.
-     */
-    public function viewAny(Tag $tag): bool
+    public function viewAny(User $user): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can view the model.
+     * Determine whether the user can view the model.
      */
-    public function view(Tag $tag, Tag $anotherTag): bool
+    public function view(User $user, Tag $tag): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can create models.
+     * Determine whether the user can create models.
      */
-    public function create(Tag $tag): bool
+    public function create(User $user): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can update the model.
+     * Determine whether the user can update the model.
      */
-    public function update(Tag $tag, Tag $anotherTag): bool
+    public function update(User $user, Tag $tag): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can delete the model.
+     * Determine whether the user can delete the model.
      */
-    public function delete(Tag $tag, Tag $anotherTag): bool
+    public function delete(User $user, Tag $tag): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can restore the model.
+     * Determine whether the user can restore the model.
      */
-    public function restore(Tag $tag, Tag $anotherTag): bool
+    public function restore(User $user, Tag $tag): bool
     {
         return false;
     }
 
     /**
-     * Determine whether the tag can permanently delete the model.
+     * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(Tag $tag, Tag $anotherTag): bool
+    public function forceDelete(User $user, Tag $tag): bool
     {
         return false;
     }

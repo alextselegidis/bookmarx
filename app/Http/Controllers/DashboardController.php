@@ -39,6 +39,8 @@ class DashboardController extends Controller
             $query->orderBy($sort, $direction);
         }
 
+        $query->where('user_id', $request->user()->id);
+
         $links = $query->cursorPaginate(25);
 
         return view('pages.dashboard', [

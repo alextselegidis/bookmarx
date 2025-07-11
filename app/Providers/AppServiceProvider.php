@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Link;
+use App\Models\Tag;
+use App\Policies\LinkPolicy;
+use App\Policies\TagPolicy;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(Link::class, LinkPolicy::class);
+        Gate::policy(Tag::class, TagPolicy::class);
     }
 }

@@ -36,6 +36,8 @@ class TagsController extends Controller
             $query->orderBy($sort, $direction);
         }
 
+        $query->where('user_id', $request->user()->id);
+
         $tags = $query->cursorPaginate(25);
 
         return view('pages.tags', [
@@ -54,6 +56,7 @@ class TagsController extends Controller
 
         $tag = Tag::create([
             'name' => $payload['name'],
+            'user_id' => $request->user()->id,
         ]);
 
         return redirect(route('tags.edit', ['tag' => $tag->id]));

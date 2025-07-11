@@ -38,6 +38,8 @@ class LinksController extends Controller
             $query->orderBy($sort, $direction);
         }
 
+        $query->where('user_id', $request->user()->id);
+
         $links = $query->cursorPaginate(25);
 
         return view('pages.links', [
@@ -56,6 +58,8 @@ class LinksController extends Controller
 
         $pageInfo = $this->fetchPageInfo($payload['url']);
 
+        $pageInfo['user_id'] = $request->user()->id;
+
         $link = Link::create($pageInfo);
 
         return redirect(route('links.edit', ['link' => $link->id]));
@@ -63,6 +67,10 @@ class LinksController extends Controller
 
     public function show(Request $request, Link $link)
     {
+        if ($link->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
         return view('pages.links-show', [
             'link' => $link,
         ]);
@@ -70,6 +78,10 @@ class LinksController extends Controller
 
     public function edit(Request $request, Link $link)
     {
+        if ($link->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
         return view('pages.links-edit', [
             'link' => $link,
             'tags' => Tag::all(),
@@ -78,6 +90,10 @@ class LinksController extends Controller
 
     public function update(Request $request, Link $link)
     {
+        if ($link->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
         $request->validate([
             'url' => 'required|min:2',
             'tags' => 'array',
@@ -97,6 +113,10 @@ class LinksController extends Controller
 
     public function destroy(Request $request, Link $link)
     {
+        if ($link->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
         $link->delete();
 
         return redirect()->back()->with('success', __('recordDeletedMessage'));
@@ -104,6 +124,10 @@ class LinksController extends Controller
 
     public function archive(Request $request, Link $link)
     {
+        if ($link->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
         $link->is_archived = !$link->is_archived;
         $link->save();
         return redirect()->back()->with('success', __('recordSavedMessage'));
