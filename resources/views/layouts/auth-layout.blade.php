@@ -19,6 +19,8 @@
     <base href="{{url('')}}/">
 
     <title>@yield('pageTitle') | Bookmarx</title>
+    <meta name="description" content="Bookmarx is a bookmark management application designed to help users easily organize your web links in one place.">
+    <meta name="theme-color" content="#e3434c">
 
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
