@@ -51,7 +51,9 @@ body {
     transform: translateY(-5px);
 }
 
-.card .card-footer a {
-    position: relative;
-    z-index: 1;
+.card .card-footer {
+    a, form {
+        position: relative;
+        z-index: 1;
+    }
 }
