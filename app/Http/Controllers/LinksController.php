@@ -108,7 +108,7 @@ class LinksController extends Controller
 
         $link->tags()->attach(request('tags'));
 
-        return redirect(route('links.show', $link->id))->with('success', __('recordSavedMessage'));
+        return redirect(route('links.show', $link->id))->with('success', __('record_saved_message'));
     }
 
     public function destroy(Request $request, Link $link)
@@ -119,7 +119,7 @@ class LinksController extends Controller
 
         $link->delete();
 
-        return redirect()->back()->with('success', __('recordDeletedMessage'));
+        return redirect()->back()->with('success', __('record_deleted_message'));
     }
 
     public function archive(Request $request, Link $link)
@@ -130,7 +130,7 @@ class LinksController extends Controller
 
         $link->is_archived = !$link->is_archived;
         $link->save();
-        return redirect()->back()->with('success', __('recordSavedMessage'));
+        return redirect()->back()->with('success', __('record_saved_message'));
     }
 
     function fetchPageInfo(string $url): array

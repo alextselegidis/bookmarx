@@ -95,7 +95,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect(route('users.show', $user->id))->with('success', __('recordSavedMessage'));
+        return redirect(route('users.show', $user->id))->with('success', __('record_saved_message'));
     }
 
     public function destroy(Request $request, User $user)
@@ -106,6 +106,6 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect()->back()->with('success', __('recordDeletedMessage'));
+        return redirect()->back()->with('success', __('record_deleted_message'));
     }
 }

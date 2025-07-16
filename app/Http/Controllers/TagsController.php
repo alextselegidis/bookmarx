@@ -89,13 +89,13 @@ class TagsController extends Controller
 
         $tag->save();
 
-        return redirect(route('tags.show', $tag->id))->with('success', __('recordSavedMessage'));
+        return redirect(route('tags.show', $tag->id))->with('success', __('record_saved_message'));
     }
 
     public function destroy(Request $request, Tag $tag)
     {
         $tag->delete();
 
-        return redirect()->back()->with('success', __('recordDeletedMessage'));
+        return redirect()->back()->with('success', __('record_deleted_message'));
     }
 }

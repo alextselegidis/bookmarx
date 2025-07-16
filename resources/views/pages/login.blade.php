@@ -18,11 +18,11 @@
 
 @section('content')
     <h1 class="display-6 text-center mb-3">
-        {{__('signIn')}}
+        {{__('sign_in')}}
     </h1>
 
     <p class="fs-5 text-muted text-center mb-5">
-        {{__('enterDetailsMessage')}}
+        {{__('enter_details_message')}}
     </p>
 
     @include('shared.errors', ['class' => 'mx-2 mx-lg-5 text-center'])
@@ -55,13 +55,13 @@
             </div>
 
             <a href="{{route('recovery')}}" class="btn btn-link px-0">
-                {{__('forgotPassword')}}
+                {{__('forgot_password')}}
             </a>
         </div>
 
         <button type="submit" class="btn btn-primary mb-3 mb-lg-0 w-100">
             <i class="bi bi-box-arrow-in-right me-2"></i>
-            {{__('logIn')}}
+            {{__('log_in')}}
         </button>
 
     </form>

@@ -48,7 +48,7 @@
 
         <div class="col-lg-6 text-lg-end">
             <a href="{{ $toggleArchivedUrl }}" class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}} w-100 w-lg-auto">
-                {{ __($showArchived ? 'hideArchived' : 'showArchived') }}
+                {{ __($showArchived ? 'hide_archived' : 'show_archived') }}
             </a>
         </div>
     </div>
@@ -102,7 +102,7 @@
                             <form action="{{route('links.destroy', $link->id)}}"
                                   method="POST"
                                   class="ms-3"
-                                  onsubmit="return confirm('{{__('deleteRecordPrompt')}}')">
+                                  onsubmit="return confirm('{{__('delete_record_prompt')}}')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="dropdown-item">
@@ -117,7 +117,7 @@
     @else
         <h1 class="text-center my-5 py-5 d-flex align-items-center justify-content-center display-1 fw-light">
             <i class="bi bi-search me-4"></i>
-            {{__('noLinksFound')}}
+            {{__('no_links_found')}}
         </h1>
     @endif
 

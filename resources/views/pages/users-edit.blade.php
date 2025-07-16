@@ -68,7 +68,7 @@
 
                 <div class="mb-3">
                     <label for="password-confirmation" class="form-label">
-                        {{ __('passwordRepeat') }}
+                        {{ __('password_repeat') }}
                         <span class="text-danger" {{ $user ? 'hidden' : ''  }}>*</span>
                     </label>
                     <input type="password" id="password-confirmation" name="password_confirmation" class="form-control"

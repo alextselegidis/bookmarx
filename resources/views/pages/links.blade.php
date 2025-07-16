@@ -108,7 +108,7 @@
                                         <li>
                                             <form action="{{route('links.destroy', $link->id)}}"
                                                   method="POST"
-                                                  onsubmit="return confirm('{{__('deleteRecordPrompt')}}')">
+                                                  onsubmit="return confirm('{{__('delete_record_prompt')}}')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item">
