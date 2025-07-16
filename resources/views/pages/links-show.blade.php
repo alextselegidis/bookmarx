@@ -47,12 +47,12 @@
 
             @include('shared.show-title', ['title' => $link->title, 'icon' => $link->favicon])
             @include('shared.show-id', ['label' => __('id'), 'value' => $link->id])
-            @include('shared.show-value', ['label' => __('title'), 'value' => $link->title])
+            @include('shared.show-text', ['label' => __('title'), 'value' => $link->title])
             @include('shared.show-link', ['label' => __('url'), 'href' => $link->url, 'value' => $link->formatted_url])
             @include('shared.show-date', ['label' => __('created'), 'value' => $link->created_at])
-            @include('shared.show-value', ['label' => __('tags'), 'value' => $link->formatted_tags])
+            @include('shared.show-text', ['label' => __('tags'), 'value' => $link->formatted_tags])
             @include('shared.show-bool', ['label' => __('archived'), 'value' => $link->is_archived])
-            @include('shared.show-value', ['label' => __('notes'), 'value' => $link->notes])
+            @include('shared.show-text', ['label' => __('notes'), 'value' => $link->notes])
 
         </div>
     </div>

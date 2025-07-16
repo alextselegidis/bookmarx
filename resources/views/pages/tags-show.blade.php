@@ -48,7 +48,7 @@
             @include('shared.show-title', ['title' => $tag->name])
             @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
             @include('shared.show-date', ['label' => __('created'), 'value' => $tag->created_at])
-            @include('shared.show-value', ['label' => __('count'), 'value' => $tag->count])
+            @include('shared.show-text', ['label' => __('count'), 'value' => $tag->count])
 
         </div>
 
