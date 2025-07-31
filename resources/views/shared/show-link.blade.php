@@ -1,12 +1,12 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Premium - Open Source Telemetry
  *
- * @package     Bookmarx
+ * @package     Premium
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://premium.org
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -14,12 +14,11 @@
     <h6 class="text-muted">
         {{$label}}
     </h6>
-    @if($href && $value)
-        <a href="{{$href}}" target="_blank">
-            {{$value}}
-        </a>
-    @else
-        -
-    @endif
+    <strong>
+        @include('shared.link-value', [
+            'value' => $value,
+            'href' => $href ?? null,
+        ])
+    </strong>
 </div>
 

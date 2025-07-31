@@ -1,12 +1,12 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Premium - Open Source Telemetry
  *
- * @package     Bookmarx
+ * @package     Premium
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://premium.org
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -14,5 +14,7 @@
     <h6 class="text-muted">
         {{$label}}
     </h6>
-    {{$value ?: '-'}}
+    <strong>
+        {{$value ?: '-'}}
+    </strong>
 </div>
