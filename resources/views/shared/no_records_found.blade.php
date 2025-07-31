@@ -10,13 +10,8 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-<div class="mb-4">
-    <h6 class="text-muted">
-        {{$label}}
-    </h6>
-    @if($value)
-        <a href="mailto:{{$value}}">{{$value}}</a>
-    @else
-        -
-    @endif
-</div>
+<tr>
+    <td colspan="999" class="text-center text-muted">
+        {{__('no_records_found')}}
+    </td>
+</tr>

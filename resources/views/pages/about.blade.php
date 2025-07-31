@@ -1,6 +1,6 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Bookmarx - Simple Bookmark Manager
  *
  * @package     Bookmarx
  * @author      A.Tselegidis <alextselegidis@gmail.com>

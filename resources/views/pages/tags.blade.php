@@ -1,6 +1,6 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Bookmarx - Simple Bookmark Manager
  *
  * @package     Bookmarx
  * @author      A.Tselegidis <alextselegidis@gmail.com>
@@ -109,6 +109,10 @@
                             </td>
                         </tr>
                     @endforeach
+
+                    @if($tags->isEmpty())
+                        @include('shared.no_records_found')
+                    @endif
                     </tbody>
                 </table>
             </div>
