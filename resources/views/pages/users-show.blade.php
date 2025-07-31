@@ -1,12 +1,12 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Premium - Open Source Telemetry
  *
- * @package     Bookmarx
+ * @package     Premium
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://premium.org
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -16,7 +16,16 @@
     {{$user->name}}
 @endsection
 
-@section('pageActions')
+@section('navTitle')
+    {{__('view_user')}}
+@endsection
+
+@section('navActions')
+    <a href="#" class="nav-link me-lg-3" data-bs-toggle="modal" data-bs-target="#create-modal">
+        <i class="bi bi-plus-square me-2"></i>
+        {{__('create')}}
+    </a>
+
     <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="nav-link me-lg-3">
         <i class="bi bi-pencil me-2"></i>
         {{__('edit')}}
@@ -37,7 +46,7 @@
 
 @section('content')
 
-    <div class="d-flex">
+    <div class="d-flex flex-column-reverse flex-lg-row">
 
         <div class="flex-grow-0 sidebar-width">
             @include('shared.settings-sidebar')
@@ -46,13 +55,22 @@
         <div class="flex-grow-1">
 
             @include('shared.show-title', ['title' => $user->name])
-            @include('shared.show-id', ['label' => __('id'), 'value' => $user->id])
-            @include('shared.show-link', ['label' => __('email'), 'href' => 'mailto:' . $user->email, 'value' => $user->email])
-            @include('shared.show-date', ['label' => __('created'), 'value' => $user->created_at])
-            @include('shared.show-bool', ['label' => __('active'), 'value' => $user->is_active])
+
+            <div class="d-lg-flex">
+                <div class="w-100">
+                    @include('shared.show-id', ['label' => __('id'), 'value' => $user->id])
+                    @include('shared.show-link', ['label' => __('email'), 'href' => 'mailto:' . $user->email, 'value' => $user->email])
+                </div>
+                <div class="w-100">
+                    @include('shared.show-date', ['label' => __('created'), 'value' => $user->created_at])
+                    @include('shared.show-bool', ['label' => __('active'), 'value' => $user->is_active])
+                </div>
+            </div>
 
         </div>
     </div>
+
+    @include('modals.create-modal', ['route' => route('users.store')])
 
 @endsection
 

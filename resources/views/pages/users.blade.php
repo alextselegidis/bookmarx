@@ -1,12 +1,12 @@
 {{--
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Premium - Open Source Telemetry
  *
- * @package     Bookmarx
+ * @package     Premium
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://premium.org
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -16,7 +16,7 @@
     {{__('Users')}}
 @endsection
 
-@section('pageActions')
+@section('navActions')
     <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#create-modal">
         <i class="bi bi-plus-square me-2"></i>
         {{__('create')}}

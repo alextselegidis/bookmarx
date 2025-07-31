@@ -16,6 +16,29 @@
     {{$tag->name}}
 @endsection
 
+@section('navTitle')
+    {{__('view_tag')}}
+@endsection
+
+@section('navActions')
+    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#create-modal">
+        <i class="bi bi-plus-square me-2"></i>
+        {{__('create')}}
+    </a>
+
+    <form action="{{route('tags.destroy', $tag->id)}}"
+          method="POST"
+          onsubmit="return confirm('{{__('delete_record_prompt')}}')">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" class="nav-link">
+            <i class="bi bi-trash me-2"></i>
+            {{__('delete')}}
+        </button>
+    </form>
+@endsection
+
 @section('content')
 
     <div class="d-flex">
@@ -52,10 +75,10 @@
                 </div>
             </form>
 
-
         </div>
     </div>
 
+    @include('modals.create-modal', ['route' => route('tags.store')])
 
 @endsection
 

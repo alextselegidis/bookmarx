@@ -16,7 +16,16 @@
     {{$tag->name}}
 @endsection
 
-@section('pageActions')
+@section('navTitle')
+    {{__('view_tag')}}
+@endsection
+
+@section('navActions')
+    <a href="#" class="nav-link me-lg-3" data-bs-toggle="modal" data-bs-target="#create-modal">
+        <i class="bi bi-plus-square me-2"></i>
+        {{__('create')}}
+    </a>
+
     <a href="{{ route('tags.edit', ['tag' => $tag->id]) }}" class="nav-link me-lg-3">
         <i class="bi bi-pencil me-2"></i>
         {{__('edit')}}
@@ -37,7 +46,7 @@
 
 @section('content')
 
-    <div class="d-flex">
+    <div class="d-flex flex-column-reverse flex-lg-row">
 
         <div class="flex-grow-0 sidebar-width">
             @include('shared.settings-sidebar')
@@ -46,13 +55,23 @@
         <div class="flex-grow-1">
 
             @include('shared.show-title', ['title' => $tag->name])
-            @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
-            @include('shared.show-date', ['label' => __('created'), 'value' => $tag->created_at])
-            @include('shared.show-text', ['label' => __('count'), 'value' => $tag->count])
+
+            <div class="d-lg-flex">
+                <div class="w-100">
+                    @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
+                    @include('shared.show-email', ['label' => __('email'), 'value' => $tag->count])
+                </div>
+                <div class="w-100">
+                    @include('shared.show-date', ['label' => __('created'), 'value' => $tag->created_at])
+                    @include('shared.show-date', ['label' => __('updated'), 'value' => $tag->updated_at])
+                </div>
+            </div>
 
         </div>
 
     </div>
+
+    @include('modals.create-modal', ['route' => route('tags.store')])
 
 @endsection
 

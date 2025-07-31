@@ -16,6 +16,29 @@
     {{$link->title}}
 @endsection
 
+@section('navTitle')
+    {{__('edit_link')}}
+@endsection
+
+@section('navActions')
+    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#create-modal">
+        <i class="bi bi-plus-square me-2"></i>
+        {{__('create')}}
+    </a>
+
+    <form action="{{route('links.destroy', $link->id)}}"
+          method="POST"
+          onsubmit="return confirm('{{__('delete_record_prompt')}}')">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" class="nav-link">
+            <i class="bi bi-trash me-2"></i>
+            {{__('delete')}}
+        </button>
+    </form>
+@endsection
+
 @section('content')
 
     <div class="d-flex">
