@@ -115,10 +115,15 @@
             @endforeach
         </div>
     @else
-        <h1 class="text-center my-5 py-5 d-flex align-items-center justify-content-center display-1 fw-light">
-            <i class="bi bi-search me-4"></i>
-            {{__('no_links_found')}}
-        </h1>
+        <div class="text-center my-5 py-5">
+            <div class="mb-5">
+                <i class="bi bi-search display-1 text-primary"></i>
+            </div>
+            <h1>
+                {{__('no_links_found')}}
+            </h1>
+        </div>
+
     @endif
 
     @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
