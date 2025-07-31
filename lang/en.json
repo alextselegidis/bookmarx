@@ -215,5 +215,11 @@
     "created": "Created",
     "updated": "Updated",
     "no_links_found": "No Links Found",
+    "view_user": "View User",
+    "edit_user": "Edit User",
+    "view_tag": "View Tag",
+    "edit_tag": "Edit Tag",
+    "view_link": "View Link",
+    "edit_link": "Edit Link",
     "paused": "Paused"
 }
