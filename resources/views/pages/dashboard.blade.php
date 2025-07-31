@@ -60,8 +60,8 @@
                 <div class="col">
                     <div class="card h-100 shadow-sm card-hover-move position-relative"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
-                        @if ($link->favicon)
-                            <img src="data:image/x-icon;base64,{{ $link->favicon }}" class="card-img-top bg-light p-2"
+                        @if ($link->og_image || $link->favicon)
+                            <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}" class="card-img-top bg-light p-2"
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @else
                             <img src="{{ url('images/logo.png') }}" class="card-img-top bg-light p-2"

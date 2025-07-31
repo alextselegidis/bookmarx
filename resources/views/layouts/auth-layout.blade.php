@@ -59,7 +59,7 @@
 <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="vendor/choices.js/choices.min.js"></script>
 <script src="vendor/pace-js/pace.min.js"></script>
-<script src="scripts/premium.js?{{config('app.version')}}"></script>
+<script src="scripts/bookmarx.js?{{config('app.version')}}"></script>
 
 @yield('scripts')
 </body>

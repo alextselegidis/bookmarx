@@ -232,6 +232,27 @@ class LinksController extends Controller
             // leave favicon as null
         }
 
+        // Download and encode og:image
+        if (!empty($data['og_image'])) {
+            try {
+                $ogImageUrl = $data['og_image'];
+                // Handle relative URLs
+                if (!parse_url($ogImageUrl, PHP_URL_HOST)) {
+                    $ogImageUrl = rtrim($url, '/') . '/' . ltrim($ogImageUrl, '/');
+                }
+
+                $ogImageResponse = Http::get($ogImageUrl);
+                if ($ogImageResponse->successful()) {
+                    $ogImageBinary = $ogImageResponse->body();
+                    $data['og_image'] = base64_encode($ogImageBinary);
+                }
+            } catch (Exception $e) {
+                $data['og_image'] = null;
+            }
+        } else {
+            $data['og_image'] = null;
+        }
+
         return $data;
     }
 }

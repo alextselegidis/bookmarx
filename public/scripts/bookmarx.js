@@ -20,9 +20,9 @@ document.querySelectorAll('.toast').forEach(function (toastEl) {
 
 // Auto-focus create modal input
 
-document
-    .getElementById('create-modal')
-    .addEventListener('shown.bs.modal', (event) => event.target.querySelector('input:not([type="hidden"])').focus());
+document.getElementById('create-modal').addEventListener('shown.bs.modal', (event) => {
+    return event.target.querySelector('input:not([type="hidden"])').focus();
+});
 
 // Init all dropdowns
 
