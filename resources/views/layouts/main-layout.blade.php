@@ -22,8 +22,13 @@
     <meta name="description" content="Bookmarx is a bookmark management application designed to help users easily organize your web links in one place.">
     <meta name="theme-color" content="#e3434c">
 
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="vendor/choices.js/choices.min.css">
+    <link rel="stylesheet" href="vendor/pace-js/pace-theme-default.min.css">
+    <link rel="stylesheet" href="vendor/pace-js/pace-theme-flat-top.tmpl.css">
     <link rel="stylesheet" href="styles/bookmarx.css?{{config('app.version')}}">
 
     @yield('styles')
@@ -42,10 +47,14 @@
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
                             <span class="navbar-brand fw-bolder text-body-secondary">
-                                @yield('pageTitle')
+                                @if(View::hasSection('navTitle'))
+                                    @yield('navTitle')
+                                @elseif(View::hasSection('pageTitle'))
+                                    @yield('pageTitle')
+                                @endif
                             </span>
 
-                            @hasSection('pageActions')
+                            @hasSection('navActions')
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#page-navbar-actions">
                                     <span class="navbar-toggler-icon"></span>
@@ -53,7 +62,7 @@
 
                                 <div class="collapse navbar-collapse" id="page-navbar-actions">
                                     <nav class="navbar-nav ms-lg-auto mb-2 mb-lg-0">
-                                        @yield('pageActions')
+                                        @yield('navActions')
                                     </nav>
                                 </div>
                             @endif
@@ -113,7 +122,9 @@
 
 
 <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="scripts/bookmarx.js?{{config('app.version')}}"></script>
+<script src="vendor/choices.js/choices.min.js"></script>
+<script src="vendor/pace-js/pace.min.js"></script>
+<script src="scripts/premium.js?{{config('app.version')}}"></script>
 
 @yield('scripts')
 </body>

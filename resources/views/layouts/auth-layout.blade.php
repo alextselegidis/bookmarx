@@ -22,8 +22,13 @@
     <meta name="description" content="Bookmarx is a bookmark management application designed to help users easily organize your web links in one place.">
     <meta name="theme-color" content="#e3434c">
 
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="vendor/choices.js/choices.min.css">
+    <link rel="stylesheet" href="vendor/pace-js/pace-theme-default.min.css">
+    <link rel="stylesheet" href="vendor/pace-js/pace-theme-flat-top.tmpl.css">
     <link rel="stylesheet" href="styles/bookmarx.css?{{config('app.version')}}">
 
     @yield('styles')
@@ -52,7 +57,9 @@
 </div>
 
 <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="scripts/bookmarx.js?{{config('app.version')}}"></script>
+<script src="vendor/choices.js/choices.min.js"></script>
+<script src="vendor/pace-js/pace.min.js"></script>
+<script src="scripts/premium.js?{{config('app.version')}}"></script>
 
 @yield('scripts')
 </body>
