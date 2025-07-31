@@ -28,6 +28,10 @@ body {
     background-color: #eee;
 }
 
+[class*=btn-outline-] {
+    border-width: 1px !important;
+}
+
 .btn,
 .nav-link,
 .dropdown-item {
