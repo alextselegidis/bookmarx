@@ -1,11 +1,11 @@
 /* ----------------------------------------------------------------------------
- * Bookmarx - Open Source Telemetry
+ * Premium - Open Source Telemetry
  *
- * @package     Bookmarx
+ * @package     Premium
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://premium.org
  * ---------------------------------------------------------------------------- */
 
 :root {
@@ -28,6 +28,17 @@ body {
     background-color: #eee;
 }
 
+.btn,
+.nav-link,
+.dropdown-item {
+    text-transform: uppercase !important;
+
+}
+
+.modal-dialog {
+    box-shadow: none;
+}
+
 .sidebar-width {
     width: 230px;
     padding-right: 15px;
@@ -45,7 +56,6 @@ body {
 }
 
 
-
 @media (min-width: 992px) {
     .rounded-lg-4 {
         border-radius: var(--bs-border-radius-xl) !important;
@@ -57,6 +67,10 @@ body {
 
     .w-lg-auto {
         width: auto !important;
+    }
+
+    .table-responsive {
+        overflow: visible;
     }
 }
 
@@ -74,3 +88,12 @@ body {
         z-index: 1;
     }
 }
+
+body .choices__inner {
+    border: none;
+    padding: .75rem 1.5rem;
+    height: 48px;
+    background-color: #f0f1f2;
+    font-size: 1rem;
+}
+
