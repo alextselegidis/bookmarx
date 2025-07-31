@@ -38,7 +38,7 @@
 
                 <div class="mb-3">
                     <label for="default-locale" class="form-label">
-                        {{ __('defaultLocale') }}
+                        {{ __('default_locale') }}
                         <span class="text-danger">*</span>
                     </label>
                     <input type="text" id="default-locale" name="default_locale" class="form-control" required
@@ -50,7 +50,7 @@
 
                 <div class="mb-3">
                     <label for="default-timezone" class="form-label">
-                        {{ __('defaultTimezone') }}
+                        {{ __('default_timezone') }}
                         <span class="text-danger">*</span>
                     </label>
 
