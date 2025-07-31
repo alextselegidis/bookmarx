@@ -10,9 +10,9 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-<h2 class="fs-3 mt-1 mb-3 text-muted">
-    {{__('settings')}}
-</h2>
+<h1 class="fs-3 mb-4 text-muted">
+    {{__('menu')}}
+</h1>
 
 <ul id="settings-nav" class="nav flex-column fw-bold fs-5 sidebar-width">
     <li class="nav-item mb-3">
