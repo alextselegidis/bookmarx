@@ -26,7 +26,7 @@
             Simple Bookmark Manager
         </p>
 
-        <a href="{{route('login')}}" class="btn btn-primary btn-lg" style="min-width: 12rem">
+        <a href="{{route('login')}}" class="btn btn-primary" style="min-width: 12rem">
             {{__('continue')}}
         </a>
     </div>
