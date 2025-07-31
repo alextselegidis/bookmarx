@@ -23,3 +23,14 @@ document.querySelectorAll('.toast').forEach(function (toastEl) {
 document
     .getElementById('create-modal')
     .addEventListener('shown.bs.modal', (event) => event.target.querySelector('input:not([type="hidden"])').focus());
+
+// Init all dropdowns
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('select').forEach(function (el) {
+        new Choices(el, {
+            shouldSort: false,
+            removeItemButton: el.multiple, // Only show remove buttons for multi-selects
+        });
+    });
+});
