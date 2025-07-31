@@ -24,10 +24,6 @@ body {
     min-width: 150px;
 }
 
-.btn:not(.btn-link) {
-    border: 2px solid
-}
-
 .bg-hover:hover {
     background-color: #eee;
 }
