@@ -228,7 +228,7 @@ class LinksController extends Controller
 
         // Download and encode favicon
         try {
-            $faviconResponse = Http::get($faviconUrl);
+            $faviconResponse = Http::withOptions(['stream' => true])->get($faviconUrl);
             if ($faviconResponse->successful()) {
                 $faviconBinary = $faviconResponse->body();
                 $data['favicon'] = base64_encode($faviconBinary);
@@ -246,7 +246,7 @@ class LinksController extends Controller
                     $ogImageUrl = rtrim($url, '/') . '/' . ltrim($ogImageUrl, '/');
                 }
 
-                $ogImageResponse = Http::get($ogImageUrl);
+                $ogImageResponse = Http::withOptions(['stream' => true])->get($ogImageUrl);
                 if ($ogImageResponse->successful()) {
                     $ogImageBinary = $ogImageResponse->body();
                     if (strlen($ogImageBinary) <= 512 * 1024) {
