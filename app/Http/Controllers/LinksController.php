@@ -249,7 +249,14 @@ class LinksController extends Controller
                 $ogImageResponse = Http::get($ogImageUrl);
                 if ($ogImageResponse->successful()) {
                     $ogImageBinary = $ogImageResponse->body();
-                    $data['og_image'] = base64_encode($ogImageBinary);
+                    if (strlen($ogImageBinary) <= 512 * 1024) {
+                        // 512KB
+                        $data['og_image'] = base64_encode($ogImageBinary);
+                    } else {
+                        $data['og_image'] = null;
+                    }
+                } else {
+                    $data['og_image'] = null;
                 }
             } catch (Exception $e) {
                 $data['og_image'] = null;
