@@ -22,6 +22,7 @@ class DashboardController extends Controller
         $query = Link::query();
 
         $q = $request->query('q');
+        $length = $request->query('length', 25);
         $showArchived = $request->query('show_archived', false);
         $tagId = $request->query('tag_id');
 
@@ -46,17 +47,19 @@ class DashboardController extends Controller
 
         $query->where('user_id', $request->user()->id);
 
-        $links = $query->cursorPaginate(25);
+        $total = $query->count();
+
+        $links = $query->cursorPaginate($length);
 
         $tags = $request->user()->tags()->orderBy('name')->get(); // Assuming user has many tags via links
 
         return view('pages.dashboard', [
             'links' => $links,
             'q' => $q,
+            'length' => $total > $length ? $length : null,
             'showArchived' => $showArchived,
             'tags' => $tags,
             'selectedTagId' => $tagId,
-            'nextCursor' => $links->nextCursor()?->encode(),
         ]);
     }
 }

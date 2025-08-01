@@ -162,9 +162,9 @@
 
     @endif
 
-    @if ($nextCursor)
+    @if ($length)
         <div class="text-center mt-4">
-            <a href="{{ request()->fullUrlWithQuery(['cursor' => $nextCursor]) }}" class="btn btn-outline-primary">
+            <a href="{{ request()->fullUrlWithQuery(['length' => $length + 25]) }}" class="btn btn-outline-primary">
                 {{ __('show_more') }}
             </a>
         </div>
