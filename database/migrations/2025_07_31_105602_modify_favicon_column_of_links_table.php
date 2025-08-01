@@ -12,7 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('links', function (Blueprint $table) {
-            $table->longText('favicon')->charset('binary')->change(); // LONGBLOB
+            $table->longText('favicon')->charset('binary')->nullable()->change(); // LONGBLOB
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('links', function (Blueprint $table) {
-            $table->binary('favicon')->change(); // BLOB
+            $table->binary('favicon')->nullable()->change(); // BLOB
         });
     }
 };

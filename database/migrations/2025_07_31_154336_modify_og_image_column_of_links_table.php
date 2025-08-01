@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('links', function (Blueprint $table) {
-            $table->longText('og_image')->charset('binary')->change(); // LONGBLOB
+            $table->longText('og_image')->charset('binary')->nullable()->change(); // LONGBLOB
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('links', function (Blueprint $table) {
-            $table->binary('og_image')->change(); // BLOB
+            $table->binary('og_image')->nullable()->change(); // BLOB
         });
     }
 };
