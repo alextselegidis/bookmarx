@@ -47,11 +47,46 @@
         @endphp
 
         <div class="col-lg-6 text-lg-end">
-            <a href="{{ $toggleArchivedUrl }}" class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}} w-100 w-lg-auto">
-                {{ __($showArchived ? 'hide_archived' : 'show_archived') }}
-            </a>
+
+            {{-- TAG FILTER --}}
+
+            <div class="d-lg-flex justify-content-lg-end gap-lg-4">
+
+                @if($tags->count())
+                    <form method="GET" action="{{ route('dashboard') }}" class="d-inline-block">
+                        <input type="hidden" name="q" value="{{ $q }}">
+                        <input type="hidden" name="show_archived" value="{{ $showArchived ? 1 : 0 }}">
+
+                        <div class="d-flex gap-2">
+                            <select class="form-select" name="tag_id" onchange="this.form.submit()" style="width: 200px">
+                                <option value="">{{ __('filter_by_tag') }}</option>
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}" {{ $selectedTagId == $tag->id ? 'selected' : '' }}>
+                                        {{ $tag->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @if($selectedTagId)
+                                <a href="{{ route('dashboard', ['q' => $q, 'show_archived' => $showArchived]) }}"
+                                   class="btn btn-outline-secondary">
+                                    {{ __('clear') }}
+                                </a>
+                            @endif
+                        </div>
+                    </form>
+                @endif
+
+                <a href="{{ $toggleArchivedUrl }}"
+                   class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}} w-100 w-lg-auto">
+                    {{ __($showArchived ? 'hide_archived' : 'show_archived') }}
+                </a>
+            </div>
         </div>
     </div>
+
+
+    {{-- LIST LINKS --}}
 
     @if ($links->count())
 
@@ -61,7 +96,8 @@
                     <div class="card h-100 shadow-sm card-hover-move position-relative"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                         @if ($link->og_image || $link->favicon)
-                            <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}" class="card-img-top bg-light p-2"
+                            <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}"
+                                 class="card-img-top bg-light p-2"
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @else
                             <img src="{{ url('images/logo.png') }}" class="card-img-top bg-light p-2"
@@ -80,7 +116,7 @@
                             @if ($link->tags()->count())
                                 <div class="mb-2">
                                     @foreach($link->tags as $tag)
-                                        <span class="badge bg-secondary">
+                                        <span class="badge bg-dark">
                                             {{ $tag->name }}
                                         </span>
                                     @endforeach

@@ -223,5 +223,7 @@
     "edit_link": "Edit Link",
     "paused": "Paused",
     "show_more": "Show More",
+    "filter_by_tag": "Filter by Tag",
+    "clear": "Clear",
     "EOF": "EOF"
 }

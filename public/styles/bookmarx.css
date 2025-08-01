@@ -22,6 +22,7 @@ body {
 
 .btn {
     min-width: 150px;
+    max-height: 48px;
 }
 
 .bg-hover:hover {
@@ -93,11 +94,21 @@ body {
     }
 }
 
+body .choices {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+    min-width: 220px;
+    text-align: left;
+    height: 50px;
+}
+
 body .choices__inner {
     border: none;
     padding: .75rem 1.5rem;
     height: 48px;
     background-color: #f0f1f2;
-    font-size: 1rem;
+    font-size: 0.875rem;
 }
+
+
 
