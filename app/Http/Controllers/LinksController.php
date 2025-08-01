@@ -102,11 +102,16 @@ class LinksController extends Controller
 
         $payload = $request->input();
 
+        $pageInfo = $this->fetchPageInfo($payload['url']);
+
+        $payload['favicon'] = $pageInfo['favicon'];
+        $payload['og_image'] = $pageInfo['og_image'];
+
         $link->fill($payload);
 
         $link->save();
 
-        $link->tags()->attach(request('tags'));
+        $link->tags()->syncWithoutDetaching(request('tags'));
 
         return redirect(route('links.show', $link->id))->with('success', __('record_saved_message'));
     }
