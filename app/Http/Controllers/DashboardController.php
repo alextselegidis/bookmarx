@@ -32,8 +32,8 @@ class DashboardController extends Controller
             $query->where('title', 'like', '%' . $q . '%');
         }
 
-        $sort = $request->query('sort');
-        $direction = $request->query('direction');
+        $sort = $request->query('sort', 'created_at');
+        $direction = $request->query('direction', 'desc');
 
         if ($sort && $direction) {
             $query->orderBy($sort, $direction);
