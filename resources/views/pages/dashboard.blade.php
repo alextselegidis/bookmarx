@@ -126,6 +126,14 @@
 
     @endif
 
+    @if ($nextCursor)
+        <div class="text-center mt-4">
+            <a href="{{ request()->fullUrlWithQuery(['cursor' => $nextCursor]) }}" class="btn btn-outline-primary">
+                {{ __('show_more') }}
+            </a>
+        </div>
+    @endif
+
     @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
 
 @endsection

@@ -47,6 +47,7 @@ class DashboardController extends Controller
             'links' => $links,
             'q' => $q,
             'showArchived' => $showArchived,
+            'nextCursor' => $links->nextCursor()?->encode(),
         ]);
     }
 }

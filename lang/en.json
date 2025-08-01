@@ -221,5 +221,7 @@
     "edit_tag": "Edit Tag",
     "view_link": "View Link",
     "edit_link": "Edit Link",
-    "paused": "Paused"
+    "paused": "Paused",
+    "show_more": "Show More",
+    "EOF": "EOF"
 }
