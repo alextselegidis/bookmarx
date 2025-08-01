@@ -105,10 +105,10 @@
                         @endif
 
                         <div class="card-body">
-                            <h5 class="card-title text-body">
+                            <h6 class="card-title text-body">
                                 {{ $link->title ?? 'No Title' }}
-                            </h5>
-                            <p class="card-text text-truncate">
+                            </h6>
+                            <p class="card-text text-truncate small">
                                 <a href="{{ $link->url }}" target="_blank"
                                    class="text-decoration-none stretched-link">{{ $link->formatted_url }}</a>
                             </p>
@@ -141,7 +141,7 @@
                                   onsubmit="return confirm('{{__('delete_record_prompt')}}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="dropdown-item">
+                                <button type="submit" class="border-0 bg-transparent link p-0 text-danger">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

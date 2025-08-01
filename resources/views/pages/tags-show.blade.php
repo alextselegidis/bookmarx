@@ -59,7 +59,7 @@
             <div class="d-lg-flex">
                 <div class="w-100">
                     @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
-                    @include('shared.show-email', ['label' => __('email'), 'value' => $tag->count])
+                    @include('shared.show-text', ['label' => __('count'), 'value' => $tag->count])
                 </div>
                 <div class="w-100">
                     @include('shared.show-date', ['label' => __('created'), 'value' => $tag->created_at])

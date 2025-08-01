@@ -17,28 +17,28 @@
 <ul id="settings-nav" class="nav flex-column fw-bold fs-5 sidebar-width">
     <li class="nav-item mb-3">
         <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('settings') }}">
-            <i class="bi bi-gear fs-4"></i>
+            <i class="bi bi-gear fs-4 text-muted"></i>
             {{__('general')}}
         </a>
     </li>
 
     <li class="nav-item mb-3">
         <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('links') }}">
-            <i class="bi bi-link-45deg fs-4"></i>
+            <i class="bi bi-link-45deg fs-4 text-muted"></i>
             {{__('links')}}
         </a>
     </li>
 
     <li class="nav-item mb-3">
         <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('tags') }}">
-            <i class="bi bi-tags fs-4"></i>
+            <i class="bi bi-tags fs-4 text-muted"></i>
             {{__('tags')}}
         </a>
     </li>
 
     <li class="nav-item mb-3">
         <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('users') }}">
-            <i class="bi bi-people fs-4"></i>
+            <i class="bi bi-people fs-4 text-muted"></i>
             {{__('users')}}
         </a>
     </li>

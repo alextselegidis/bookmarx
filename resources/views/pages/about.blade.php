@@ -36,7 +36,7 @@
         </div>
 
         <div>
-            <a href="https://bookmarx.org" class="btn btn-lg btn-outline-primary" target="_blank">Official Website</a>
+            <a href="https://bookmarx.org" class="btn btn-outline-primary" target="_blank">Official Website</a>
         </div>
     </div>
 @endsection
