@@ -12,6 +12,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -91,6 +92,15 @@ class UsersController extends Controller
             unset($payload['password'], $payload['password_confirmation']);
         }
 
+        if (
+            $user->id === $request->user()->id &&
+            $user->role === RoleEnum::ADMIN->value &&
+            $payload['role'] !== RoleEnum::ADMIN->value &&
+            User::where('role', RoleEnum::ADMIN->value)->count() === 1
+        ) {
+            return back()->with('error', __('cannotDeactivateLastAdmin'));
+        }
+
         $user->fill($payload);
 
         $user->save();
@@ -102,6 +112,16 @@ class UsersController extends Controller
     {
         if ($user->id === request()->user()->id) {
             return redirect()->route('users')->with('error', __('cannotDeleteCurrentUser'));
+        }
+
+        // Check if user is an admin
+        if ($user->role === RoleEnum::ADMIN->value) {
+            // Count how many admins are left
+            $adminCount = User::where('role', RoleEnum::ADMIN->value)->count();
+
+            if ($adminCount <= 1) {
+                return back()->with('error', __('cannotDeactivateLastAdmin'));
+            }
         }
 
         $user->delete();

@@ -225,5 +225,7 @@
     "show_more": "Show More",
     "filter_by_tag": "Filter by Tag",
     "clear": "Clear",
+    "cannotDeactivateLastAdmin": "You cannot deactivate the last admin.",
+    "admin": "Admin",
     "EOF": "EOF"
 }
