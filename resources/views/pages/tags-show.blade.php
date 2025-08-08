@@ -58,7 +58,6 @@
 
             <div class="d-lg-flex">
                 <div class="w-100">
-                    @include('shared.show-id', ['label' => __('id'), 'value' => $tag->id])
                     @include('shared.show-text', ['label' => __('count'), 'value' => $tag->count])
                 </div>
                 <div class="w-100">

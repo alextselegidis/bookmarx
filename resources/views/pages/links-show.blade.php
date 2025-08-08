@@ -58,7 +58,6 @@
 
             <div class="d-lg-flex">
                 <div class="w-100">
-                    @include('shared.show-id', ['label' => __('id'), 'value' => $link->id])
                     @include('shared.show-text', ['label' => __('title'), 'value' => $link->title])
                     @include('shared.show-link', ['label' => __('url'), 'href' => $link->url, 'value' => $link->formatted_url])
                     @include('shared.show-text', ['label' => __('tags'), 'value' => $link->formatted_tags])

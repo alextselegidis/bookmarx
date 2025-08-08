@@ -50,11 +50,6 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th style="width: 10%">
-                            <a href="{{ route('links', ['sort' => 'id', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
-                                {!! sort_link('id', __('id')) !!}
-                            </a>
-                        </th>
                         <th style="width: 50%">
                             <a href="{{ route('links', ['sort' => 'title', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
                                 {!! sort_link('title', __('title')) !!}
@@ -79,10 +74,7 @@
                     @foreach($links as $link)
                         <tr onclick="window.location='{{route('links.show', $link->id)}}'" style="cursor: pointer;">
                             <td>
-                                @include('shared.id-value', ['value' => $link->id])
-                            </td>
-                            <td>
-                                {{$link->title}}
+                                {{Str::limit($link->title, 120)}}
                             </td>
                             <td>
                                 <a href="{{$link->url}}" target="_blank">
