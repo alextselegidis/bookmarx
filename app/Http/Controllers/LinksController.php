@@ -17,12 +17,15 @@ use App\Models\Tag;
 use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 
 class LinksController extends Controller
 {
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Link::class);
+
         $query = Link::query();
 
         $q = $request->query('q');
@@ -50,6 +53,8 @@ class LinksController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Link::class);
+
         $request->validate([
             'url' => 'required|url',
         ]);
@@ -67,6 +72,8 @@ class LinksController extends Controller
 
     public function show(Request $request, Link $link)
     {
+        Gate::authorize('view', $link);
+
         if ($link->user_id !== $request->user()->id) {
             abort(403);
         }
@@ -78,6 +85,8 @@ class LinksController extends Controller
 
     public function edit(Request $request, Link $link)
     {
+        Gate::authorize('update', $link);
+
         if ($link->user_id !== $request->user()->id) {
             abort(403);
         }
@@ -90,6 +99,8 @@ class LinksController extends Controller
 
     public function update(Request $request, Link $link)
     {
+        Gate::authorize('update', $link);
+
         if ($link->user_id !== $request->user()->id) {
             abort(403);
         }
@@ -104,8 +115,13 @@ class LinksController extends Controller
 
         $pageInfo = $this->fetchPageInfo($payload['url']);
 
-        $payload['favicon'] = $pageInfo['favicon'];
-        $payload['og_image'] = $pageInfo['og_image'];
+        if (!empty($pageInfo['favicon'])) {
+            $payload['favicon'] = $pageInfo['favicon'];
+        }
+
+        if (!empty($pageInfo['og_image'])) {
+            $payload['og_image'] = $pageInfo['og_image'];
+        }
 
         $link->fill($payload);
 
@@ -118,17 +134,21 @@ class LinksController extends Controller
 
     public function destroy(Request $request, Link $link)
     {
+        Gate::authorize('delete', $link);
+
         if ($link->user_id !== $request->user()->id) {
             abort(403);
         }
 
         $link->delete();
 
-        return redirect()->back()->with('success', __('record_deleted_message'));
+        return redirect('links')->with('success', __('record_deleted_message'));
     }
 
     public function archive(Request $request, Link $link)
     {
+        Gate::authorize('update', $link);
+
         if ($link->user_id !== $request->user()->id) {
             abort(403);
         }

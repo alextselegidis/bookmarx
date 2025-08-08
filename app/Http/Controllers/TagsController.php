@@ -14,6 +14,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,8 @@ class TagsController extends Controller
 {
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Tag::class);
+
         $query = Tag::query();
 
         $q = $request->query('q');
@@ -48,6 +51,8 @@ class TagsController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Tag::class);
+
         $request->validate([
             'name' => 'required',
         ]);
@@ -65,6 +70,8 @@ class TagsController extends Controller
 
     public function show(Request $request, Tag $tag)
     {
+        Gate::authorize('view', $tag);
+
         return view('pages.tags-show', [
             'tag' => $tag,
         ]);
@@ -72,6 +79,8 @@ class TagsController extends Controller
 
     public function edit(Request $request, Tag $tag)
     {
+        Gate::authorize('update', $tag);
+
         return view('pages.tags-edit', [
             'tag' => $tag,
         ]);
@@ -79,6 +88,8 @@ class TagsController extends Controller
 
     public function update(Request $request, Tag $tag)
     {
+        Gate::authorize('update', $tag);
+
         $request->validate([
             'name' => 'required|min:2',
         ]);
@@ -94,8 +105,10 @@ class TagsController extends Controller
 
     public function destroy(Request $request, Tag $tag)
     {
+        Gate::authorize('delete', $tag);
+
         $tag->delete();
 
-        return redirect()->back()->with('success', __('record_deleted_message'));
+        return redirect('tags')->with('success', __('record_deleted_message'));
     }
 }

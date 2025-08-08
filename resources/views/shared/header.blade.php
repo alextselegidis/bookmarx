@@ -24,8 +24,8 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                     <li >
-                                         <a class="dropdown-item" href="{{route('settings')}}">
+                                     <li>
+                                         <a class="dropdown-item" href="{{route(Auth::user()->isAdmin() ? 'settings' : 'links')}}">
                                              {{__('settings')}}
                                          </a>
                                      </li>

@@ -136,6 +136,6 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect()->back()->with('success', __('record_deleted_message'));
+        return redirect('users')->with('success', __('record_deleted_message'));
     }
 }

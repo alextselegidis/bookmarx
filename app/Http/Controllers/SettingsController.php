@@ -13,12 +13,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+    /**
+     * @throws AuthorizationException
+     */
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Setting::class);
+
         return view('pages.settings', [
             'defaultLocale' => setting('default_locale'),
             'defaultTimezone' => setting('default_timezone'),
@@ -27,6 +34,8 @@ class SettingsController extends Controller
 
     public function update(Request $request)
     {
+        Gate::authorize('update', Setting::class);
+
         $request->validate([
             'default_locale' => 'required',
             'default_timezone' => 'required',
