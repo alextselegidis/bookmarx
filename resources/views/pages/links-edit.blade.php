@@ -122,5 +122,8 @@
         </div>
     </div>
 
+    @include('modals.create-modal', ['route' => route('links.store'), 'input_name' => 'url', 'input_type' => 'url'])
+
+
 @endsection
 
