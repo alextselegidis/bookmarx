@@ -10,6 +10,8 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
+@php use App\Models\User; @endphp
+
 <h1 class="fs-3 mb-4 text-muted">
     {{__('menu')}}
 </h1>
@@ -36,10 +38,12 @@
         </a>
     </li>
 
-    <li class="nav-item mb-3">
-        <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('users') }}">
-            <i class="bi bi-people fs-4 text-muted"></i>
-            {{__('users')}}
-        </a>
-    </li>
+    @can('viewAny', User::class)
+        <li class="nav-item mb-3">
+            <a class="nav-link px-0 py-2 d-flex align-items-center gap-3 text-primary" href="{{ route('users') }}">
+                <i class="bi bi-people fs-4 text-muted"></i>
+                {{__('users')}}
+            </a>
+        </li>
+    @endcan
 </ul>
