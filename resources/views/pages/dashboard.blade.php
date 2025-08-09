@@ -93,7 +93,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($links as $link)
                 <div class="col">
-                    <div class="card h-100 shadow-sm card-hover-move position-relative"
+                    <div class="card h-100 shadow-sm card-hover-move position-relative {{$link->is_archived ? 'bg-opacity-10 bg-warning' : ''}}"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                         @if ($link->og_image || $link->favicon)
                             <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}"
