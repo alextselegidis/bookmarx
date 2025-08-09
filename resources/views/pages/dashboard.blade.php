@@ -106,7 +106,7 @@
 
                         <div class="card-body">
                             <h6 class="card-title text-body">
-                                {{ $link->title ?? 'No Title' }}
+                                {{ $link->title ? Str::limit($link->title, 100) : 'No Title' }}
                             </h6>
                             <p class="card-text text-truncate small">
                                 <a href="{{ $link->url }}" target="_blank"
