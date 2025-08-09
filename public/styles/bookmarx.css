@@ -82,6 +82,9 @@ body {
 .table td, .table th {
     padding: 1rem;
     white-space: nowrap; /* Prevent wrapping */
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
     width: 1%; /* Shrink to fit content */
 }
 
@@ -100,7 +103,7 @@ body {
     }
 
     .table-responsive {
-        overflow: visible;
+        /*overflow: visible;*/
     }
 }
 
