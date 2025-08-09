@@ -189,13 +189,13 @@ class LinksController extends Controller
         // <title>
         $titleTag = $dom->getElementsByTagName('title');
         if ($titleTag->length) {
-            $data['title'] = $titleTag->item(0)->nodeValue;
+            $data['title'] = trim($titleTag->item(0)->nodeValue);
         }
 
         // <meta> tags
         foreach ($dom->getElementsByTagName('meta') as $meta) {
             $name = strtolower($meta->getAttribute('name') ?: $meta->getAttribute('property'));
-            $content = $meta->getAttribute('content');
+            $content = trim($meta->getAttribute('content'));
 
             switch ($name) {
                 case 'description':
