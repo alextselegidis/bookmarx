@@ -161,7 +161,9 @@ class LinksController extends Controller
     function fetchPageInfo(string $url): array
     {
         // Fetch HTML
-        $response = Http::get($url);
+        $response = Http::withOptions([
+            'allow_redirects' => true, // follow redirects
+        ])->get($url);
         $html = $response->body();
 
         libxml_use_internal_errors(true);
