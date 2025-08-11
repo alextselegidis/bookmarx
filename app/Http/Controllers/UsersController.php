@@ -70,7 +70,7 @@ class UsersController extends Controller
 
     public function show(Request $request, User $user)
     {
-        Gate::authorize('view', User::class);
+        Gate::authorize('view', $user);
 
         return view('pages.users-show', [
             'user' => $user,
@@ -79,7 +79,7 @@ class UsersController extends Controller
 
     public function edit(Request $request, User $user)
     {
-        Gate::authorize('update', User::class);
+        Gate::authorize('update', $user);
 
         return view('pages.users-edit', [
             'user' => $user,
@@ -88,7 +88,7 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
-        Gate::authorize('update', User::class);
+        Gate::authorize('update', $user);
 
         $request->validate([
             'name' => 'required|min:2',
@@ -121,7 +121,7 @@ class UsersController extends Controller
 
     public function destroy(Request $request, User $user)
     {
-        Gate::authorize('delete', User::class);
+        Gate::authorize('delete', $user);
 
         if ($user->id === request()->user()->id) {
             return redirect()->route('users')->with('error', __('cannotDeleteCurrentUser'));

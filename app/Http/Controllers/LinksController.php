@@ -160,17 +160,6 @@ class LinksController extends Controller
 
     function fetchPageInfo(string $url): array
     {
-        // Fetch HTML
-        $response = Http::withOptions([
-            'allow_redirects' => true, // follow redirects
-        ])->get($url);
-        $html = $response->body();
-
-        libxml_use_internal_errors(true);
-        $dom = new DOMDocument();
-        $dom->loadHTML($html);
-        libxml_clear_errors();
-
         $data = [
             'title' => '',
             'url' => $url,
@@ -187,6 +176,22 @@ class LinksController extends Controller
             'og_site_name' => '',
             'favicon' => null, // base64-encoded favicon content
         ];
+
+        try {
+            // Fetch HTML
+            $response = Http::withOptions([
+                'allow_redirects' => true, // follow redirects
+            ])->get($url);
+        } catch (\Throwable $e) {
+            return $data;
+        }
+
+        $html = $response->body();
+
+        libxml_use_internal_errors(true);
+        $dom = new DOMDocument();
+        $dom->loadHTML($html);
+        libxml_clear_errors();
 
         // <title>
         $titleTag = $dom->getElementsByTagName('title');
