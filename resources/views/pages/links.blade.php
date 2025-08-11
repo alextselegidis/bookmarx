@@ -74,7 +74,7 @@
                     @foreach($links as $link)
                         <tr onclick="window.location='{{route('links.show', $link->id)}}'" style="cursor: pointer;">
                             <td>
-                                {{$link->title, 120}}
+                                {{$link->title}}
                             </td>
                             <td>
                                 <a href="{{$link->url}}" target="_blank">
