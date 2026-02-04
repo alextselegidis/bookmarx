@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-
+<div>
     <div class="mx-auto my-5 text-center" style="max-width: 600px">
         <div class="mb-5">
             <img src="images/logo.png" alt="Logo" class="me-2" style="height: 128px">
@@ -39,5 +39,6 @@
             <a href="https://bookmarx.org" class="btn btn-outline-primary" target="_blank">Official Website</a>
         </div>
     </div>
+</div>
 @endsection
 

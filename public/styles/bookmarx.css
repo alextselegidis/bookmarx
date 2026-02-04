@@ -24,6 +24,7 @@ a {
 }
 
 a:hover {
+
     color: var(--bs-link-hover-color);
 }
 
@@ -59,6 +60,15 @@ a:hover {
     }
     .flex-lg-grow-0 {
         flex-grow: 0 !important;
+    }
+    .rounded-lg-3 {
+        border-radius: var(--bs-border-radius-lg) !important;
+    }
+    .shadow-lg-sm {
+        box-shadow: var(--bs-box-shadow-sm) !important;
+    }
+    .min-vh-lg-auto {
+        min-height: auto !important;
     }
 }
 

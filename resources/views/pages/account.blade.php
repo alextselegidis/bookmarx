@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')
+<div>
     <div style="max-width: 600px" class="mx-auto my-4">
 
         <!-- Page Header -->
@@ -147,5 +148,6 @@
         </div>
 
     </div>
+</div>
 @endsection
 

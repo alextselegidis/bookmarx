@@ -24,6 +24,7 @@
 @endsection
 
 @section('content')
+<div>
     <div class="row mb-3 mb-lg-0">
         <div class="col-lg-6">
             <form action="{{route('dashboard')}}" method="GET" class="mb-3">
@@ -55,7 +56,7 @@
                 @if($tags->count())
                     <div class="d-flex gap-2 mb-3 mb-lg-0">
                         <div class="dropdown flex-grow-1 flex-lg-grow-0">
-                            <button class="btn btn-outline-secondary dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 200px">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @if($selectedTagId)
                                     {{ $tags->firstWhere('id', $selectedTagId)?->name ?? __('filter_by_tag') }}
                                 @else
@@ -175,6 +176,7 @@
             </a>
         </div>
     @endif
+</div>
 
     @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
 

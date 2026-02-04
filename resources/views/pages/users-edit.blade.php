@@ -42,7 +42,7 @@
 @endsection
 
 @section('content')
-
+<div>
     <div class="d-flex">
 
         <div class="flex-grow-0 sidebar-width">
@@ -134,6 +134,7 @@
 
         </div>
     </div>
+</div>
 
     @include('modals.create-modal', ['route' => route('users.store')])
 

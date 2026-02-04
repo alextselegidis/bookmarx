@@ -32,7 +32,7 @@
 
     @yield('styles')
 </head>
-<body class="main-layout d-flex flex-column min-vh-100">
+<body class="main-layout d-flex flex-column min-vh-100 bg-light">
 <div class="flex-grow-1">
     @include('shared.header')
 
@@ -74,7 +74,7 @@
     @endif
 
     <!-- Page Content -->
-    <main class="container">
+    <main class="container mb-4">
         <div class="row">
             <div class="col">
                 @yield('content')

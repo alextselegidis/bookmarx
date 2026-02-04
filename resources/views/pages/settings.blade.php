@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-
+<div>
     <div class="d-flex flex-column-reverse flex-lg-row">
 
         <div class="flex-grow-0 sidebar-width">
@@ -76,6 +76,6 @@
         </div>
 
     </div>
-
+</div>
 @endsection
 
