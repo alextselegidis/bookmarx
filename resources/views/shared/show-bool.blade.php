@@ -10,9 +10,13 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-<div class="mb-4">
-    <h6 class="text-muted">
-        {{$label}}
-    </h6>
-    @include('shared.bool-value', ['value' => $value])
+<div class="mb-3">
+    <label class="form-label text-primary small fw-medium mb-1">{{ $label }}</label>
+    <div>
+        @if($value)
+            <span class="badge bg-success-subtle text-success">{{ __('yes') }}</span>
+        @else
+            <span class="badge bg-danger-subtle text-danger">{{ __('no') }}</span>
+        @endif
+    </div>
 </div>

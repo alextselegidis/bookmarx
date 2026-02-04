@@ -10,15 +10,18 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-<div class="mb-4">
-    <h6 class="text-muted">
-        {{$label}}
-    </h6>
-    <strong>
-        @include('shared.link-value', [
-            'value' => $value,
-            'href' => $href ?? null,
-        ])
-    </strong>
+<div class="mb-3">
+    <label class="form-label text-primary small fw-medium mb-1">{{ $label }}</label>
+    <div>
+        @if($value)
+            <a href="{{ $href ?? '#' }}" class="text-decoration-none" {{ isset($target) ? 'target=' . $target : '' }}>
+                {{ $value }}
+                @if(str_starts_with($href ?? '', 'http'))
+                    <i class="bi bi-box-arrow-up-right ms-1 small"></i>
+                @endif
+            </a>
+        @else
+            -
+        @endif
+    </div>
 </div>
-

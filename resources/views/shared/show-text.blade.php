@@ -10,11 +10,7 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-<div class="mb-4">
-    <h6 class="text-muted">
-        {{$label}}
-    </h6>
-    <strong>
-        {{$value ?: '-'}}
-    </strong>
+<div class="mb-3">
+    <label class="form-label text-primary small fw-medium mb-1">{{ $label }}</label>
+    <div>{{ $value ?: '-' }}</div>
 </div>
