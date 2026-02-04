@@ -100,7 +100,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($links as $link)
                 <div class="col">
-                    <div class="card h-100 shadow-sm card-hover-move position-relative {{$link->is_archived ? 'bg-opacity-10 bg-warning' : ''}}"
+                    <div class="card h-100 shadow-sm card-hover-move {{ $link->is_archived ? 'bg-opacity-10 bg-warning' : '' }}"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                         @if ($link->og_image || $link->favicon)
                             <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}"
@@ -111,44 +111,45 @@
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @endif
 
-                        <div class="card-body">
-                            <h6 class="card-title text-body">
-                                {{ $link->title ? Str::limit($link->title, 100) : 'No Title' }}
-                            </h6>
-                            <p class="card-text text-truncate small">
-                                <a href="{{ $link->url }}" target="_blank"
-                                   class="text-decoration-none stretched-link">{{ $link->formatted_url }}</a>
-                            </p>
+                        <a href="{{ $link->url }}" target="_blank" class="text-decoration-none">
+                            <div class="card-body">
+                                <h6 class="card-title text-body">
+                                    {{ $link->title ? Str::limit($link->title, 100) : 'No Title' }}
+                                </h6>
+                                <p class="card-text text-truncate small text-primary">
+                                    {{ $link->formatted_url }}
+                                </p>
 
-                            @if ($link->tags()->count())
-                                <div class="mb-2">
-                                    @foreach($link->tags as $tag)
-                                        <span class="badge bg-dark">
-                                            {{ $tag->name }}
-                                        </span>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                                @if ($link->tags()->count())
+                                    <div class="mb-2">
+                                        @foreach($link->tags as $tag)
+                                            <span class="badge bg-dark">
+                                                {{ $tag->name }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </a>
 
-                        <div class="card-footer text-muted small d-flex">
+                        <div class="card-footer text-muted small d-flex align-items-center">
                             {{ $link->created_at->format('Y-m-d H:i') }}
 
-                            <a href="{{route('links.edit', ['link' => $link])}}" class="ms-auto">
+                            <a href="{{ route('links.edit', ['link' => $link]) }}" class="ms-auto" title="{{ __('edit') }}">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                            <a href="{{route('links.archive', ['link' => $link])}}" class="ms-3">
-                                <i class="bi bi-{{$link->is_archived ? 'archive-fill' : 'archive'}}"></i>
+                            <a href="{{ route('links.archive', ['link' => $link]) }}" class="ms-3" title="{{ __($link->is_archived ? 'unarchive' : 'archive') }}">
+                                <i class="bi bi-{{ $link->is_archived ? 'archive-fill' : 'archive' }}"></i>
                             </a>
 
-                            <form action="{{route('links.destroy', $link->id)}}"
+                            <form action="{{ route('links.destroy', $link->id) }}"
                                   method="POST"
                                   class="ms-3"
-                                  onsubmit="return confirm('{{__('delete_record_prompt')}}')">
+                                  onsubmit="return confirm('{{ __('delete_record_prompt') }}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="border-0 bg-transparent link p-0 text-danger">
+                                <button type="submit" class="border-0 bg-transparent p-0 text-danger" title="{{ __('delete') }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
