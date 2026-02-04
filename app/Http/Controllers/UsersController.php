@@ -109,7 +109,7 @@ class UsersController extends Controller
             $payload['role'] !== RoleEnum::ADMIN->value &&
             User::where('role', RoleEnum::ADMIN->value)->count() === 1
         ) {
-            return back()->with('error', __('cannotDeactivateLastAdmin'));
+            return back()->with('error', __('cannot_deactivate_last_admin'));
         }
 
         $user->fill($payload);
@@ -130,7 +130,7 @@ class UsersController extends Controller
         // Check if user is an admin
         if ($user->isAdmin()) {
             if (User::where('role', RoleEnum::ADMIN->value)->count() <= 1) {
-                return back()->with('error', __('cannotDeactivateLastAdmin'));
+                return back()->with('error', __('cannot_deactivate_last_admin'));
             }
         }
 
