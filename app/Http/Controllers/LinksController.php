@@ -115,10 +115,12 @@ class LinksController extends Controller
 
         $pageInfo = $this->fetchPageInfo($payload['url']);
 
+        // Only update favicon if we got a new one
         if (!empty($pageInfo['favicon'])) {
             $payload['favicon'] = $pageInfo['favicon'];
         }
 
+        // Only update og_image if we got a new one
         if (!empty($pageInfo['og_image'])) {
             $payload['og_image'] = $pageInfo['og_image'];
         }
@@ -174,7 +176,7 @@ class LinksController extends Controller
             'og_url' => '',
             'og_image' => '',
             'og_site_name' => '',
-            'favicon' => null, // base64-encoded favicon content
+            'favicon' => '',
         ];
 
         try {
@@ -280,16 +282,14 @@ class LinksController extends Controller
                         // 512KB
                         $data['og_image'] = base64_encode($ogImageBinary);
                     } else {
-                        $data['og_image'] = null;
+                        $data['og_image'] = '';
                     }
                 } else {
-                    $data['og_image'] = null;
+                    $data['og_image'] = '';
                 }
             } catch (Exception $e) {
-                $data['og_image'] = null;
+                $data['og_image'] = '';
             }
-        } else {
-            $data['og_image'] = null;
         }
 
         return $data;
