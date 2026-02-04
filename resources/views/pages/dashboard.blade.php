@@ -50,31 +50,37 @@
 
             {{-- TAG FILTER --}}
 
-            <div class="d-lg-flex justify-content-lg-end gap-lg-4">
+            <div class="d-lg-flex justify-content-lg-end gap-lg-4 align-items-center">
 
                 @if($tags->count())
-                    <form method="GET" action="{{ route('dashboard') }}" class="d-inline-block">
-                        <input type="hidden" name="q" value="{{ $q }}">
-                        <input type="hidden" name="show_archived" value="{{ $showArchived ? 1 : 0 }}">
-
-                        <div class="d-flex gap-2">
-                            <select class="form-select" name="tag_id" onchange="this.form.submit()" style="width: 200px">
-                                <option value="">{{ __('filter_by_tag') }}</option>
+                    <div class="d-flex gap-2 mb-3 mb-lg-0">
+                        <div class="dropdown flex-grow-1 flex-lg-grow-0">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 200px">
+                                @if($selectedTagId)
+                                    {{ $tags->firstWhere('id', $selectedTagId)?->name ?? __('filter_by_tag') }}
+                                @else
+                                    {{ __('filter_by_tag') }}
+                                @endif
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end w-100" style="max-height: 300px; overflow-y: auto;">
                                 @foreach($tags as $tag)
-                                    <option value="{{ $tag->id }}" {{ $selectedTagId == $tag->id ? 'selected' : '' }}>
-                                        {{ $tag->name }}
-                                    </option>
+                                    <li>
+                                        <a class="dropdown-item {{ $selectedTagId == $tag->id ? 'active' : '' }}"
+                                           href="{{ route('dashboard', ['q' => $q, 'show_archived' => $showArchived ? 1 : 0, 'tag_id' => $tag->id]) }}">
+                                            {{ $tag->name }}
+                                        </a>
+                                    </li>
                                 @endforeach
-                            </select>
-
-                            @if($selectedTagId)
-                                <a href="{{ route('dashboard', ['q' => $q, 'show_archived' => $showArchived]) }}"
-                                   class="btn btn-outline-secondary">
-                                    {{ __('clear') }}
-                                </a>
-                            @endif
+                            </ul>
                         </div>
-                    </form>
+
+                        @if($selectedTagId)
+                            <a href="{{ route('dashboard', ['q' => $q, 'show_archived' => $showArchived]) }}"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-x-lg"></i>
+                            </a>
+                        @endif
+                    </div>
                 @endif
 
                 <a href="{{ $toggleArchivedUrl }}"
@@ -97,10 +103,10 @@
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                         @if ($link->og_image || $link->favicon)
                             <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}"
-                                 class="card-img-top bg-light p-2"
+                                 class="card-img-top p-2"
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @else
-                            <img src="{{ url('images/logo.png') }}" class="card-img-top bg-light p-2"
+                            <img src="{{ url('images/logo.png') }}" class="card-img-top p-2"
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @endif
 

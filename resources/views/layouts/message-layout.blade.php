@@ -26,7 +26,6 @@
 
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="vendor/choices.js/choices.min.css">
     <link rel="stylesheet" href="vendor/pace-js/pace-theme-default.min.css">
     <link rel="stylesheet" href="vendor/pace-js/pace-theme-flat-top.tmpl.css">
     <link rel="stylesheet" href="styles/bookmarx.css?{{config('app.version')}}">
@@ -59,7 +58,6 @@
 </div>
 
 <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="vendor/choices.js/choices.min.js"></script>
 <script src="vendor/pace-js/pace.min.js"></script>
 <script src="scripts/bookmarx.js?{{config('app.version')}}"></script>
 

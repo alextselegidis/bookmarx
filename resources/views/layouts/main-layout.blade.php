@@ -26,15 +26,14 @@
 
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="vendor/choices.js/choices.min.css">
     <link rel="stylesheet" href="vendor/pace-js/pace-theme-default.min.css">
     <link rel="stylesheet" href="vendor/pace-js/pace-theme-flat-top.tmpl.css">
     <link rel="stylesheet" href="styles/bookmarx.css?{{config('app.version')}}">
 
     @yield('styles')
 </head>
-<body class="main-layout d-flex flex-column h-100">
-<div class="flex-shrink-0">
+<body class="main-layout d-flex flex-column min-vh-100">
+<div class="flex-grow-1">
     @include('shared.header')
 
     <!-- Page Heading -->
@@ -118,11 +117,11 @@
 
 </div>
 
-@include('shared.footer')
-
+<footer class="mt-auto">
+    @include('shared.footer')
+</footer>
 
 <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="vendor/choices.js/choices.min.js"></script>
 <script src="vendor/pace-js/pace.min.js"></script>
 <script src="scripts/bookmarx.js?{{config('app.version')}}"></script>
 
