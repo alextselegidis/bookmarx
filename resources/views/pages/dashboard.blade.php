@@ -102,8 +102,12 @@
                 <div class="col">
                     <div class="card h-100 shadow-sm card-hover-move {{ $link->is_archived ? 'bg-opacity-10 bg-warning' : '' }}"
                          style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
-                        @if ($link->og_image || $link->favicon)
-                            <img src="data:image/x-icon;base64,{{ $link->og_image ?: $link->favicon }}"
+                        @if ($link->og_image)
+                            <img src="data:image/x-icon;base64,{{ $link->og_image }}"
+                                 class="card-img-top"
+                                 alt="Preview" style="width: 100%; height: 150px; object-fit: cover;">
+                        @elseif ($link->favicon)
+                            <img src="data:image/x-icon;base64,{{ $link->favicon }}"
                                  class="card-img-top p-2"
                                  alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                         @else
