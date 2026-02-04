@@ -36,7 +36,7 @@
         </div>
 
         <div>
-            <a href="https://bookmarx.org" class="btn btn-outline-primary" target="_blank">Official Website</a>
+            <a href="https://alextselegidis.com" class="btn btn-outline-primary" target="_blank">alextselegidis.com</a>
         </div>
     </div>
 </div>
