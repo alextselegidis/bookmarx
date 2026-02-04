@@ -44,4 +44,5 @@ zip -r build.zip . \
     -x 'docker-compose.yml' \
     -x 'postcss.config.js' \
     -x 'vite.config.js' \
+    -x 'SPECS.md' \
     -x '*.zip'
