@@ -6,7 +6,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -43,6 +43,7 @@
                     GitHub
                 </a>
                 <a href="https://alextselegidis.com" class="btn btn-outline-secondary" target="_blank">
+                    <img src="images/alextselegidis-logo-16x16.png" alt="logo" class="me-2"/>
                     alextselegidis.com
                 </a>
             </div>

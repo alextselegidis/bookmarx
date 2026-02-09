@@ -6,7 +6,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -46,13 +46,13 @@
     <div class="d-flex flex-column flex-lg-row gap-4">
         <!-- Sidebar -->
         <div class="flex-shrink-0" style="min-width: 200px;">
-            @include('shared.settings-sidebar')
+            @include('shared.edit-sidebar', ['items' => [
+                ['label' => __('details'), 'route' => 'tags.edit', 'params' => ['tag' => $tag->id], 'icon' => 'file-text'],
+                ['label' => __('links'), 'route' => 'tags.edit.links', 'params' => ['tag' => $tag->id], 'icon' => 'link-45deg']
+            ]])
         </div>
-
         <!-- Main Content -->
-
         <div class="flex-grow-1">
-
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-body p-4">
                     <form action="{{ route('tags.update', ['tag' => $tag->id]) }}" method="POST" id="edit-form">
@@ -86,8 +86,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
 
     @include('modals.create-modal', ['route' => route('tags.store')])
 @endsection

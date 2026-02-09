@@ -6,19 +6,20 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
 @extends('layouts.main-layout')
 
 @section('pageTitle')
-    {{ __('settings') }}
+    {{ __('localization') }}
 @endsection
 
 @section('breadcrumbs')
     @include('shared.breadcrumb', ['breadcrumbs' => [
-        ['label' => __('settings')]
+        ['label' => __('setup')],
+        ['label' => __('localization')]
     ]])
 @endsection
 
@@ -26,7 +27,7 @@
     <div class="d-flex flex-column flex-lg-row gap-4">
         <!-- Sidebar -->
         <div class="flex-shrink-0" style="min-width: 200px;">
-            @include('shared.settings-sidebar')
+            @include('shared.setup-sidebar')
         </div>
 
         <!-- Main Content -->
@@ -35,10 +36,9 @@
 
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-body p-4">
-                    <form action="{{ route('settings.update') }}" method="POST" id="settings-form">
+                    <form action="{{ route('setup.localization.update') }}" method="POST" id="settings-form">
                         @csrf
                         @method('PUT')
-                        <h6 class="text-secondary fw-medium mb-3">{{ __('localization') }}</h6>
                         <div class="mb-3">
                             <label for="default-locale" class="form-label text-dark small fw-medium">
                                 <span class="text-danger">*</span> {{ __('default_locale') }}

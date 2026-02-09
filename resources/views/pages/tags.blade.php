@@ -6,83 +6,65 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
-
 @extends('layouts.main-layout')
-
 @section('pageTitle')
     {{ __('tags') }}
 @endsection
-
 @section('breadcrumbs')
     @include('shared.breadcrumb', ['breadcrumbs' => [
         ['label' => __('tags')]
     ]])
 @endsection
-
 @section('navActions')
     <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#create-modal">
         <i class="bi bi-plus-square me-2"></i>
         {{ __('create') }}
     </a>
 @endsection
-
 @section('content')
-<div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
-
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('tags') }}</h5>
-
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <!-- Search -->
-                <form action="{{ route('tags') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-search text-muted"></i>
-                        </span>
-                        <input type="text" id="q" name="q" class="form-control bg-light border-start-0"
-                               value="{{ $q }}"
-                               placeholder="{{ __('search') }}..." style="max-width: 300px;">
-                    </div>
-                </form>
-
-                <!-- Table -->
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
+    <!-- Search -->
+    <form action="{{ route('tags') }}" method="GET" class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-light border-end-0">
+                <i class="bi bi-search text-muted"></i>
+            </span>
+            <input type="text" id="q" name="q" class="form-control bg-light border-start-0"
+                   value="{{ $q }}"
+                   placeholder="{{ __('search') }}..." style="max-width: 300px;">
+        </div>
+    </form>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+            <!-- Table -->
+            <div class="table-responsive" style="overflow: visible;">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
                         <tr>
-                            <th class="border-0 rounded-start">
-                                <a href="{{ route('tags', ['sort' => 'name', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-body">
+                            <th class="border-0 ps-4">
+                                <a href="{{ route('tags', ['sort' => 'name', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-white">
                                     {{ __('name') }}
                                     @if(request('sort') === 'name')
                                         <i class="bi bi-chevron-{{ request('direction') === 'asc' ? 'up' : 'down' }} ms-1"></i>
                                     @endif
                                 </a>
                             </th>
-                            <th class="border-0">
-                                {{ __('count') }}
-                            </th>
-                            <th class="border-0 rounded-end text-end" style="width: 100px;"></th>
+                            <th class="border-0 text-white">{{ __('count') }}</th>
+                            <th class="border-0 pe-4 text-end" style="width: 100px;"></th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         @foreach($tags as $tag)
-                            <tr onclick="window.location='{{ route('tags.show', $tag->id) }}'" style="cursor: pointer;">
-                                <td class="border-0">
+                            <tr onclick="window.location='{{ route('tags.edit', $tag->id) }}'" style="cursor: pointer;">
+                                <td class="border-0 ps-4">
                                     <span class="fw-medium">{{ $tag->name }}</span>
                                 </td>
                                 <td class="border-0">
-                                    <span class="badge bg-light text-dark">{{ $tag->count }}</span>
+                                    <span class="badge bg-light text-dark">{{ $tag->links_count ?? $tag->links()->count() }}</span>
                                 </td>
-                                <td class="border-0 text-end">
+                                <td class="border-0 pe-4 text-end">
                                     <div class="dropdown" onclick="event.stopPropagation();">
                                         <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                             {{ __('actions') }}
@@ -109,7 +91,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                         @if($tags->isEmpty())
                             <tr>
                                 <td colspan="3" class="border-0 text-center text-muted py-5">
@@ -118,14 +99,10 @@
                                 </td>
                             </tr>
                         @endif
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
-
-@include('modals.create-modal', ['route' => route('tags.store')])
+    @include('modals.create-modal', ['route' => route('tags.store')])
 @endsection
-

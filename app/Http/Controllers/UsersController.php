@@ -7,7 +7,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 
 namespace App\Http\Controllers;
@@ -64,17 +64,8 @@ class UsersController extends Controller
             'password' => Hash::make(Str::random(8)),
         ]);
 
-        return redirect(route('users.edit', ['user' => $user->id]));
+        return redirect(route('setup.users.edit', ['user' => $user->id]));
         // return redirect(request()->fullUrlWithoutQuery('create'));
-    }
-
-    public function show(Request $request, User $user)
-    {
-        Gate::authorize('view', $user);
-
-        return view('pages.users-show', [
-            'user' => $user,
-        ]);
     }
 
     public function edit(Request $request, User $user)
@@ -116,7 +107,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect(route('users.show', $user->id))->with('success', __('record_saved_message'));
+        return redirect(route('setup.users.edit', $user->id))->with('success', __('record_saved_message'));
     }
 
     public function destroy(Request $request, User $user)
@@ -124,7 +115,7 @@ class UsersController extends Controller
         Gate::authorize('delete', $user);
 
         if ($user->id === request()->user()->id) {
-            return redirect()->route('users')->with('error', __('cannotDeleteCurrentUser'));
+            return redirect()->route('setup.users')->with('error', __('cannotDeleteCurrentUser'));
         }
 
         // Check if user is an admin
@@ -136,6 +127,6 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect('users')->with('success', __('record_deleted_message'));
+        return redirect(route('setup.users'))->with('success', __('record_deleted_message'));
     }
 }

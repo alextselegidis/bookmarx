@@ -7,7 +7,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 
 namespace App\Http\Controllers;
@@ -46,6 +46,6 @@ class SettingsController extends Controller
             'default_timezone' => $request->input('default_timezone'),
         ]);
 
-        return redirect(route('settings'))->with('success', __('recordsSavedMessage'));
+        return redirect(route('setup.localization'))->with('success', __('record_saved_message'));
     }
 }

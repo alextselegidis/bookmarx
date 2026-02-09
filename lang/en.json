@@ -232,5 +232,7 @@
     "new_password": "New Password",
     "leave_blank_to_keep": "leave blank to keep current",
     "unarchive": "Unarchive",
-    "EOF": "EOF"
+    "EOF": "EOF",
+    "setup": "Setup",
+    "details": "Details"
 }

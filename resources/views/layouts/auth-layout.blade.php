@@ -6,7 +6,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -46,7 +46,7 @@
 
         <div class="text-center small my-5">
             Powered By
-            <a href="https://bookmarx.org" target="_blank">
+            <a href="https://github.com/alextselegidis/bookmarx" target="_blank">
                 Bookmarx
             </a>
         </div>

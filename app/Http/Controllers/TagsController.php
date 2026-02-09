@@ -7,7 +7,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 
 namespace App\Http\Controllers;
@@ -64,17 +64,6 @@ class TagsController extends Controller
         return redirect(route('tags.edit', ['tag' => $tag->id]));
     }
 
-    public function show(Request $request, Tag $tag)
-    {
-        Gate::authorize('view', $tag);
-        // Get non-archived links connected to this tag, paginated
-        $links = $tag->links()->where('is_archived', false)->orderBy('created_at', 'desc')->paginate(10);
-        return view('pages.tags-show', [
-            'tag' => $tag,
-            'links' => $links,
-        ]);
-    }
-
     public function edit(Request $request, Tag $tag)
     {
         Gate::authorize('update', $tag);
@@ -98,9 +87,20 @@ class TagsController extends Controller
 
         $tag->save();
 
-        return redirect(route('tags.show', $tag->id))->with('success', __('record_saved_message'));
+        return redirect(route('tags.edit', $tag->id))->with('success', __('record_saved_message'));
     }
 
+    public function editLinks(Request $request, Tag $tag)
+    {
+        Gate::authorize('view', $tag);
+
+        $links = $tag->links()->where('is_archived', false)->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('pages.tags-edit-links', [
+            'tag' => $tag,
+            'links' => $links,
+        ]);
+    }
     public function destroy(Request $request, Tag $tag)
     {
         Gate::authorize('delete', $tag);

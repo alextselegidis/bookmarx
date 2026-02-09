@@ -7,7 +7,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 
 namespace App\Http\Controllers;
@@ -70,19 +70,6 @@ class LinksController extends Controller
         return redirect(route('links.edit', ['link' => $link->id]));
     }
 
-    public function show(Request $request, Link $link)
-    {
-        Gate::authorize('view', $link);
-
-        if ($link->user_id !== $request->user()->id) {
-            abort(403);
-        }
-
-        return view('pages.links-show', [
-            'link' => $link,
-        ]);
-    }
-
     public function edit(Request $request, Link $link)
     {
         Gate::authorize('update', $link);
@@ -93,7 +80,7 @@ class LinksController extends Controller
 
         return view('pages.links-edit', [
             'link' => $link,
-            'tags' => Tag::all(),
+            'tags' => Tag::where('user_id', $request->user()->id)->get(),
         ]);
     }
 
@@ -131,7 +118,7 @@ class LinksController extends Controller
 
         $link->tags()->syncWithoutDetaching(request('tags'));
 
-        return redirect(route('links.show', $link->id))->with('success', __('record_saved_message'));
+        return redirect(route('links.edit', $link->id))->with('success', __('record_saved_message'));
     }
 
     public function destroy(Request $request, Link $link)
@@ -144,7 +131,7 @@ class LinksController extends Controller
 
         $link->delete();
 
-        return redirect('dashboard')->with('success', __('record_deleted_message'));
+        return redirect('links')->with('success', __('record_deleted_message'));
     }
 
     public function archive(Request $request, Link $link)

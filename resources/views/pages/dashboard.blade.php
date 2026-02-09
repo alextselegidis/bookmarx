@@ -6,7 +6,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -62,7 +62,7 @@
                     @if($tags->count())
                         <div class="d-flex gap-2 mb-3 mb-lg-0">
                             <div class="dropdown flex-grow-1 flex-lg-grow-0">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-primary dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @if($selectedTagId)
                                         {{ $tags->firstWhere('id', $selectedTagId)?->name ?? __('filter_by_tag') }}
                                     @else
@@ -83,7 +83,7 @@
 
                             @if($selectedTagId)
                                 <a href="{{ route('dashboard', ['q' => $q, 'show_archived' => $showArchived]) }}"
-                                   class="btn btn-outline-secondary">
+                                   class="btn btn-primary">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             @endif
@@ -127,15 +127,15 @@
                                     <p class="card-text text-truncate small" style="color: #0d6efd;">
                                         {{ $link->formatted_url }}
                                     </p>
-                                    @if ($link->tags()->count())
-                                        <div class="mb-2">
+                                    <div class="mb-2" style="min-height: 24px;">
+                                        @if ($link->tags()->count())
                                             @foreach($link->tags as $tag)
                                                 <span class="badge bg-dark">
                                                     {{ $tag->name }}
                                                 </span>
                                             @endforeach
-                                        </div>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
                             </a>
                             <div class="card-footer bg-body-secondary text-muted small d-flex align-items-center">

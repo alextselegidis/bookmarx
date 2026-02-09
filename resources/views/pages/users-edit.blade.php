@@ -20,7 +20,8 @@
 
 @section('breadcrumbs')
     @include('shared.breadcrumb', ['breadcrumbs' => [
-        ['label' => __('users'), 'url' => route('users')],
+        ['label' => __('setup'), 'url' => route('setup.localization')],
+        ['label' => __('users'), 'url' => route('setup.users')],
         ['label' => $user->name]
     ]])
 @endsection
@@ -31,7 +32,7 @@
         {{ __('create') }}
     </a>
 
-    <form action="{{ route('users.destroy', $user->id) }}"
+    <form action="{{ route('setup.users.destroy', $user->id) }}"
           method="POST"
           onsubmit="return confirm('{{ __('delete_record_prompt') }}')">
         @csrf
@@ -48,14 +49,22 @@
     <div class="d-flex flex-column flex-lg-row gap-4">
         <!-- Sidebar -->
         <div class="flex-shrink-0" style="min-width: 200px;">
-            @include('shared.settings-sidebar')
+            @include('shared.setup-sidebar')
         </div>
 
         <!-- Main Content -->
         <div class="flex-grow-1">
-            <div class="card border-0 shadow-sm rounded-3">
+            <!-- Edit Sidebar -->
+            <div class="d-flex flex-column flex-lg-row gap-4">
+                <div class="flex-shrink-0" style="min-width: 180px;">
+                    @include('shared.edit-sidebar', ['items' => [
+                        ['label' => __('details'), 'route' => 'setup.users.edit', 'params' => ['user' => $user->id], 'icon' => 'file-text']
+                    ]])
+                </div>
+                <div class="flex-grow-1">
+                    <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-body p-4">
-                    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" id="edit-form">
+                    <form action="{{ route('setup.users.update', ['user' => $user->id]) }}" method="POST" id="edit-form">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -140,6 +149,6 @@
         </div>
     </div>
 
-    @include('modals.create-modal', ['route' => route('users.store')])
+    @include('modals.create-modal', ['route' => route('setup.users.store')])
 @endsection
 

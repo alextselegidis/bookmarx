@@ -6,7 +6,7 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://bookmarx.org
+ * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
 --}}
 
@@ -30,37 +30,26 @@
 @endsection
 
 @section('content')
-<div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
-
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('links') }}</h5>
-
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <!-- Search -->
-                <form action="{{ route('links') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-end-0">
-                            <i class="bi bi-search text-muted"></i>
-                        </span>
-                        <input type="text" id="q" name="q" class="form-control bg-light border-start-0"
-                               value="{{ $q }}"
-                               placeholder="{{ __('search') }}..." style="max-width: 300px;">
-                    </div>
-                </form>
-
-                <!-- Table -->
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
+    <!-- Search -->
+    <form action="{{ route('links') }}" method="GET" class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-light border-end-0">
+                <i class="bi bi-search text-muted"></i>
+            </span>
+            <input type="text" id="q" name="q" class="form-control bg-light border-start-0"
+                   value="{{ $q }}"
+                   placeholder="{{ __('search') }}..." style="max-width: 300px;">
+        </div>
+    </form>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+            <!-- Table -->
+            <div class="table-responsive" style="overflow: visible;">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
                         <tr>
-                            <th class="border-0 rounded-start">
-                                <a href="{{ route('links', ['sort' => 'title', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-body">
+                            <th class="border-0 ps-4">
+                                <a href="{{ route('links', ['sort' => 'title', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-white">
                                     {{ __('title') }}
                                     @if(request('sort') === 'title')
                                         <i class="bi bi-chevron-{{ request('direction') === 'asc' ? 'up' : 'down' }} ms-1"></i>
@@ -68,24 +57,22 @@
                                 </a>
                             </th>
                             <th class="border-0">
-                                <a href="{{ route('links', ['sort' => 'url', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-body">
+                                <a href="{{ route('links', ['sort' => 'url', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-white">
                                     {{ __('url') }}
                                     @if(request('sort') === 'url')
                                         <i class="bi bi-chevron-{{ request('direction') === 'asc' ? 'up' : 'down' }} ms-1"></i>
                                     @endif
                                 </a>
                             </th>
-                            <th class="border-0">
-                                {{ __('tags') }}
-                            </th>
-                            <th class="border-0 rounded-end text-end" style="width: 100px;"></th>
+                            <th class="border-0 text-white">{{ __('tags') }}</th>
+                            <th class="border-0 pe-4 text-end" style="width: 100px;"></th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         @foreach($links as $link)
-                            <tr onclick="window.location='{{ route('links.show', $link->id) }}'" style="cursor: pointer;">
-                                <td class="border-0">
-                                    <span class="fw-medium">{{ $link->title }}</span>
+                            <tr onclick="window.location='{{ route('links.edit', $link->id) }}'" style="cursor: pointer;">
+                                <td class="border-0 ps-4">
+                                    <span class="fw-medium">{{ Str::limit($link->title, 40) }}</span>
                                 </td>
                                 <td class="border-0">
                                     <a href="{{ $link->url }}" target="_blank" class="text-decoration-none" onclick="event.stopPropagation();">
@@ -105,7 +92,7 @@
                                         <span class="text-muted">-</span>
                                     @endif
                                 </td>
-                                <td class="border-0 text-end">
+                                <td class="border-0 pe-4 text-end">
                                     <div class="dropdown" onclick="event.stopPropagation();">
                                         <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                             {{ __('actions') }}
@@ -132,7 +119,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                         @if($links->isEmpty())
                             <tr>
                                 <td colspan="4" class="border-0 text-center text-muted py-5">
@@ -141,14 +127,10 @@
                                 </td>
                             </tr>
                         @endif
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
-
-@include('modals.create-modal', ['route' => route('links.store'), 'input_name' => 'url', 'input_type' => 'url'])
+    @include('modals.create-modal', ['route' => route('links.store'), 'input_name' => 'url', 'input_type' => 'url'])
 @endsection
-

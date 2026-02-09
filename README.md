@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <a href="https://bookmarx.org">
+    <a href="https://github.com/alextselegidis/bookmarx">
         <img src="https://raw.githubusercontent.com/alextselegidis/bookmarx/main/logo.png" alt="Bookmarx" width="150">
     </a>
     <br>
@@ -74,7 +74,7 @@ You will need to perform the following steps to install the application on your 
 
 That's it! You can now use Bookmarx at your will.
 
-You will find the latest release at [bookmarx.org](https://bookmarx.org).
+You will find the latest release at [github.com/alextselegidis/bookmarx](github.com/alextselegidis/bookmarx).
 You can also report problems on the [issues page](https://github.com/alextselegidis/bookmarx/issues)
 and help the development progress.
 

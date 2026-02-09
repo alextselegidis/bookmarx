@@ -1,5 +1,4 @@
 <?php
-
 /* ----------------------------------------------------------------------------
  * Bookmarx - Simple Bookmark Manager
  *
@@ -9,15 +8,17 @@
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
  * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
-
-namespace App\Enums;
-
-use App\Traits\EnumValues;
-
-enum RoleEnum: string
+namespace App\Http\Middleware;
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+class AdminMiddleware
 {
-    use EnumValues;
-
-    case ADMIN = 'admin';
-    case USER = 'user';
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (!$request->user() || !$request->user()->isAdmin()) {
+            abort(403, 'Unauthorized action.');
+        }
+        return $next($request);
+    }
 }
