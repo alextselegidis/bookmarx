@@ -90,7 +90,7 @@
                         </div>
                     @endif
                     <a href="{{ $toggleArchivedUrl }}"
-                       class="btn {{$showArchived ? 'btn-primary' : 'btn-outline-primary'}} w-100 w-lg-auto">
+                       class="btn btn-primary w-100 w-lg-auto">
                         {{ __($showArchived ? 'hide_archived' : 'show_archived') }}
                     </a>
                 </div>
