@@ -15,9 +15,6 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-
 class TagsController extends Controller
 {
     public function index(Request $request)
@@ -65,15 +62,16 @@ class TagsController extends Controller
         ]);
 
         return redirect(route('tags.edit', ['tag' => $tag->id]));
-        // return redirect(request()->fullUrlWithoutQuery('create'));
     }
 
     public function show(Request $request, Tag $tag)
     {
         Gate::authorize('view', $tag);
-
+        // Get non-archived links connected to this tag, paginated
+        $links = $tag->links()->where('is_archived', false)->orderBy('created_at', 'desc')->paginate(10);
         return view('pages.tags-show', [
             'tag' => $tag,
+            'links' => $links,
         ]);
     }
 

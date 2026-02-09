@@ -11,10 +11,10 @@
 --}}
 
 <div class="mb-3">
-    <label class="form-label text-primary small fw-medium mb-1">{{ $label }}</label>
+    <label class="form-label text-dark small fw-medium mb-1">{{ $label }}</label>
     <div>
         @if($value)
-            {{ $value->format('Y-m-d H:i') }}
+            {{ $value->locale(app()->getLocale())->isoFormat('L LT') }}
         @else
             -
         @endif

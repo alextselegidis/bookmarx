@@ -16,6 +16,12 @@
     {{ __('users') }}
 @endsection
 
+@section('breadcrumbs')
+    @include('shared.breadcrumb', ['breadcrumbs' => [
+        ['label' => __('users')]
+    ]])
+@endsection
+
 @section('navActions')
     <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#create-modal">
         <i class="bi bi-plus-square me-2"></i>

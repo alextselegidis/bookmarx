@@ -228,5 +228,9 @@
     "cannot_deactivate_last_admin": "You cannot deactivate the last admin.",
     "admin": "Admin",
     "mark_as_archived": "Marked as archived",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "leave_blank_to_keep": "leave blank to keep current",
+    "unarchive": "Unarchive",
     "EOF": "EOF"
 }

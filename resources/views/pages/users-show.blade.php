@@ -16,8 +16,11 @@
     {{ $user->name }}
 @endsection
 
-@section('navTitle')
-    {{ __('view_user') }}
+@section('breadcrumbs')
+    @include('shared.breadcrumb', ['breadcrumbs' => [
+        ['label' => __('users'), 'url' => route('users')],
+        ['label' => $user->name]
+    ]])
 @endsection
 
 @section('navActions')
@@ -45,35 +48,33 @@
 @endsection
 
 @section('content')
-<div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
+    <div class="d-flex flex-column flex-lg-row gap-4">
+        <!-- Sidebar -->
+        <div class="flex-shrink-0" style="min-width: 200px;">
+            @include('shared.settings-sidebar')
+        </div>
 
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('profile') }}</h5>
-
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <div class="row">
-                    <div class="col-lg-6">
-                        @include('shared.show-text', ['label' => __('name'), 'value' => $user->name])
-                        @include('shared.show-link', ['label' => __('email'), 'href' => 'mailto:' . $user->email, 'value' => $user->email])
-                        @include('shared.show-text', ['label' => __('role'), 'value' => __($user->role)])
-                    </div>
-                    <div class="col-lg-6">
-                        @include('shared.show-bool', ['label' => __('active'), 'value' => $user->is_active])
-                        @include('shared.show-date', ['label' => __('created'), 'value' => $user->created_at])
-                        @include('shared.show-date', ['label' => __('updated'), 'value' => $user->updated_at])
+        <!-- Main Content -->
+        <div class="flex-grow-1">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @include('shared.show-text', ['label' => __('name'), 'value' => $user->name])
+                            @include('shared.show-link', ['label' => __('email'), 'href' => 'mailto:' . $user->email, 'value' => $user->email])
+                            @include('shared.show-text', ['label' => __('role'), 'value' => __($user->role)])
+                        </div>
+                        <div class="col-lg-6">
+                            @include('shared.show-bool', ['label' => __('active'), 'value' => $user->is_active])
+                            @include('shared.show-date', ['label' => __('created'), 'value' => $user->created_at])
+                            @include('shared.show-date', ['label' => __('updated'), 'value' => $user->updated_at])
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('modals.create-modal', ['route' => route('users.store')])
+    @include('modals.create-modal', ['route' => route('users.store')])
 @endsection
 

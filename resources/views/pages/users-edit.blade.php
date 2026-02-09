@@ -18,8 +18,11 @@
     {{ $user->name }}
 @endsection
 
-@section('navTitle')
-    {{ __('edit_user') }}
+@section('breadcrumbs')
+    @include('shared.breadcrumb', ['breadcrumbs' => [
+        ['label' => __('users'), 'url' => route('users')],
+        ['label' => $user->name]
+    ]])
 @endsection
 
 @section('navActions')
@@ -42,104 +45,101 @@
 @endsection
 
 @section('content')
-<div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
+    <div class="d-flex flex-column flex-lg-row gap-4">
+        <!-- Sidebar -->
+        <div class="flex-shrink-0" style="min-width: 200px;">
+            @include('shared.settings-sidebar')
+        </div>
 
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('edit_user') }}</h5>
+        <!-- Main Content -->
+        <div class="flex-grow-1">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" id="edit-form">
+                        @csrf
+                        @method('PUT')
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-dark small fw-medium">
+                                        <span class="text-danger">*</span> {{ __('name') }}
+                                    </label>
+                                    <input type="text" id="name" name="name" class="form-control" required
+                                           value="{{ old('name', $user?->name ?? null) }}">
+                                    @error('name')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" id="edit-form">
-                    @csrf
-                    @method('PUT')
+                                <div class="mb-3">
+                                    <label for="email" class="form-label text-dark small fw-medium">
+                                        <span class="text-danger">*</span> {{ __('email') }}
+                                    </label>
+                                    <input type="email" id="email" name="email" class="form-control" required
+                                           value="{{ old('email', $user?->email ?? null) }}">
+                                    @error('email')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="name" class="form-label text-primary small fw-medium">
-                                    <span class="text-danger">*</span> {{ __('name') }}
-                                </label>
-                                <input type="text" id="name" name="name" class="form-control" required
-                                       value="{{ old('name', $user?->name ?? null) }}">
-                                @error('name')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
+                                <div class="mb-3">
+                                    <label for="role" class="form-label text-dark small fw-medium">
+                                        <span class="text-danger">*</span> {{ __('role') }}
+                                    </label>
+                                    <select name="role" id="role" class="form-select" required>
+                                        @foreach(RoleEnum::values() as $role)
+                                            <option value="{{ $role }}" @if($user?->role === $role) selected @endif>
+                                                {{ __($role) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="email" class="form-label text-primary small fw-medium">
-                                    <span class="text-danger">*</span> {{ __('email') }}
-                                </label>
-                                <input type="email" id="email" name="email" class="form-control" required
-                                       value="{{ old('email', $user?->email ?? null) }}">
-                                @error('email')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="password" class="form-label text-dark small fw-medium">
+                                        {{ __('password') }}
+                                        <span class="text-muted small">({{ __('leave_blank_to_keep') }})</span>
+                                    </label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                           value="{{ old('password') }}" autocomplete="new-password">
+                                    @error('password')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="role" class="form-label text-primary small fw-medium">
-                                    <span class="text-danger">*</span> {{ __('role') }}
-                                </label>
-                                <select name="role" id="role" class="form-select" required>
-                                    @foreach(RoleEnum::values() as $role)
-                                        <option value="{{ $role }}" @if($user?->role === $role) selected @endif>
-                                            {{ __($role) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('role')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="password" class="form-label text-primary small fw-medium">
-                                    {{ __('password') }}
-                                    <span class="text-muted small">({{ __('leave_blank_to_keep') }})</span>
-                                </label>
-                                <input type="password" id="password" name="password" class="form-control"
-                                       value="{{ old('password') }}" autocomplete="new-password">
-                                @error('password')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="password-confirmation" class="form-label text-primary small fw-medium">
-                                    {{ __('password_repeat') }}
-                                </label>
-                                <input type="password" id="password-confirmation" name="password_confirmation" class="form-control"
-                                       value="{{ old('password_confirmation') }}">
-                                @error('password_confirmation')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
+                                <div class="mb-3">
+                                    <label for="password-confirmation" class="form-label text-dark small fw-medium">
+                                        {{ __('password_repeat') }}
+                                    </label>
+                                    <input type="password" id="password-confirmation" name="password_confirmation" class="form-control"
+                                           value="{{ old('password_confirmation') }}">
+                                    @error('password_confirmation')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <!-- Card Footer with Save Button -->
-            <div class="card-footer bg-light border-top text-end py-3 px-4">
-                <button type="button" class="btn btn-outline-secondary me-2" onclick="history.back()">
-                    {{ __('cancel') }}
-                </button>
-                <button type="submit" form="edit-form" class="btn btn-dark">
-                    {{ __('save') }}
-                </button>
+                <!-- Card Footer with Save Button -->
+                <div class="card-footer bg-body-secondary border-top text-end py-3 px-4">
+                    <button type="button" class="btn btn-outline-secondary me-2" onclick="history.back()">
+                        {{ __('cancel') }}
+                    </button>
+                    <button type="submit" form="edit-form" class="btn btn-dark">
+                        {{ __('save') }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('modals.create-modal', ['route' => route('users.store')])
+    @include('modals.create-modal', ['route' => route('users.store')])
 @endsection
 

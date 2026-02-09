@@ -10,7 +10,7 @@
  * ---------------------------------------------------------------------------- */
 --}}
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -34,6 +34,7 @@
 </head>
 <body class="main-layout d-flex flex-column min-vh-100 bg-light">
 <div class="flex-grow-1">
+
     @include('shared.header')
 
     <!-- Page Heading -->
@@ -45,14 +46,18 @@
 
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
-                            <span class="navbar-brand fw-bolder text-body-secondary">
-                                @if(View::hasSection('navTitle'))
-                                    @yield('navTitle')
-                                @elseif(View::hasSection('pageTitle'))
-                                    @yield('pageTitle')
+                            <div class="d-flex flex-column">
+                                @if(View::hasSection('breadcrumbs'))
+                                    @yield('breadcrumbs')
                                 @endif
-                            </span>
-
+                                <span class="navbar-brand fw-bolder text-body-secondary mb-0">
+                                    @if(View::hasSection('navTitle'))
+                                        @yield('navTitle')
+                                    @elseif(View::hasSection('pageTitle'))
+{{--                                        @yield('pageTitle')--}}
+                                    @endif
+                                </span>
+                            </div>
                             @hasSection('navActions')
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#page-navbar-actions">

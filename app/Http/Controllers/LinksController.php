@@ -144,7 +144,7 @@ class LinksController extends Controller
 
         $link->delete();
 
-        return redirect('links')->with('success', __('record_deleted_message'));
+        return redirect('dashboard')->with('success', __('record_deleted_message'));
     }
 
     public function archive(Request $request, Link $link)

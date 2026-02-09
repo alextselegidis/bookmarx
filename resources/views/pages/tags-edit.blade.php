@@ -16,8 +16,11 @@
     {{ $tag->name }}
 @endsection
 
-@section('navTitle')
-    {{ __('edit_tag') }}
+@section('breadcrumbs')
+    @include('shared.breadcrumb', ['breadcrumbs' => [
+        ['label' => __('tags'), 'url' => route('tags')],
+        ['label' => $tag->name]
+    ]])
 @endsection
 
 @section('navActions')
@@ -40,52 +43,52 @@
 @endsection
 
 @section('content')
- <div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
+    <div class="d-flex flex-column flex-lg-row gap-4">
+        <!-- Sidebar -->
+        <div class="flex-shrink-0" style="min-width: 200px;">
+            @include('shared.settings-sidebar')
+        </div>
 
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('edit_tag') }}</h5>
+        <!-- Main Content -->
 
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <form action="{{ route('tags.update', ['tag' => $tag->id]) }}" method="POST" id="edit-form">
-                    @csrf
-                    @method('PUT')
+        <div class="flex-grow-1">
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="name" class="form-label text-primary small fw-medium">
-                                    <span class="text-danger">*</span> {{ __('name') }}
-                                </label>
-                                <input type="text" id="name" name="name" class="form-control" required
-                                       value="{{ old('name', $tag?->name ?? null) }}">
-                                @error('name')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <form action="{{ route('tags.update', ['tag' => $tag->id]) }}" method="POST" id="edit-form">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-dark small fw-medium">
+                                        <span class="text-danger">*</span> {{ __('name') }}
+                                    </label>
+                                    <input type="text" id="name" name="name" class="form-control" required
+                                           value="{{ old('name', $tag?->name ?? null) }}">
+                                    @error('name')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <!-- Card Footer with Save Button -->
-            <div class="card-footer bg-light border-top text-end py-3 px-4">
-                <button type="button" class="btn btn-outline-secondary me-2" onclick="history.back()">
-                    {{ __('cancel') }}
-                </button>
-                <button type="submit" form="edit-form" class="btn btn-dark">
-                    {{ __('save') }}
-                </button>
+                <!-- Card Footer with Save Button -->
+                <div class="card-footer bg-body-secondary border-top text-end py-3 px-4">
+                    <button type="button" class="btn btn-outline-secondary me-2" onclick="history.back()">
+                        {{ __('cancel') }}
+                    </button>
+                    <button type="submit" form="edit-form" class="btn btn-dark">
+                        {{ __('save') }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('modals.create-modal', ['route' => route('tags.store')])
+    @include('modals.create-modal', ['route' => route('tags.store')])
 @endsection
 

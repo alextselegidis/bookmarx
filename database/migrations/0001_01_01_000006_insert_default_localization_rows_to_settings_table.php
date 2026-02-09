@@ -1,5 +1,4 @@
 <?php
-
 /* ----------------------------------------------------------------------------
  * Bookmarx - Simple Bookmark Manager
  *
@@ -9,10 +8,8 @@
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
  * @link        https://bookmarx.org
  * ---------------------------------------------------------------------------- */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
-
 return new class extends Migration {
     /**
      * Run the migrations.
@@ -24,18 +21,17 @@ return new class extends Migration {
         if (!$table->where('name', 'default_locale')->exists()) {
             $table->insert([
                 'name' => 'default_locale',
-                'value' => 'en_US',
+                'value' => config('app.locale', 'en'),
             ]);
         }
 
-        if (!$table->where('name', 'company_email')->exists()) {
+        if (!$table->where('name', 'default_timezone')->exists()) {
             $table->insert([
                 'name' => 'default_timezone',
-                'value' => 'UTC',
+                'value' => config('app.timezone', 'UTC'),
             ]);
         }
     }
-
     /**
      * Reverse the migrations.
      */

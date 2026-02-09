@@ -16,8 +16,11 @@
     {{ $link->title }}
 @endsection
 
-@section('navTitle')
-    {{ __('view_link') }}
+@section('breadcrumbs')
+    @include('shared.breadcrumb', ['breadcrumbs' => [
+        ['label' => __('links'), 'url' => route('links')],
+        ['label' => Str::limit($link->title, 30)]
+    ]])
 @endsection
 
 @section('navActions')
@@ -45,49 +48,67 @@
 @endsection
 
 @section('content')
-<div class="d-flex flex-column flex-lg-row gap-4">
-    <!-- Sidebar -->
-    <div class="flex-shrink-0" style="min-width: 200px;">
-        @include('shared.settings-sidebar')
-    </div>
+    <div class="d-flex flex-column flex-lg-row gap-4">
+        <!-- Sidebar -->
+        <div class="flex-shrink-0" style="min-width: 200px;">
+            @include('shared.settings-sidebar')
+        </div>
 
-    <!-- Main Content -->
-    <div class="flex-grow-1">
-        <h5 class="fw-bold mb-3">{{ __('details') }}</h5>
+        <!-- Main Content -->
 
-        <div class="card border-0 shadow-sm rounded-3">
-            <div class="card-body p-4">
-                <div class="row">
-                    <div class="col-lg-6">
-                        @include('shared.show-text', ['label' => __('title'), 'value' => $link->title])
-                        @include('shared.show-link', ['label' => __('url'), 'href' => $link->url, 'value' => $link->formatted_url, 'target' => '_blank'])
+        <div class="flex-grow-1">
 
-                        <div class="mb-3">
-                            <label class="form-label text-primary small fw-medium mb-1">{{ __('tags') }}</label>
-                            <div>
-                                @if($link->tags->count())
-                                    @foreach($link->tags as $tag)
-                                        <span class="badge bg-light text-dark border">{{ $tag->name }}</span>
-                                    @endforeach
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Link Preview Image -->
+                            <div class="mb-4">
+                                @if ($link->og_image)
+                                    <img src="data:image/x-icon;base64,{{ $link->og_image }}"
+                                         class="img-fluid rounded shadow-sm"
+                                         alt="Preview" style="max-height: 200px; width: 100%; object-fit: cover;">
+                                @elseif ($link->favicon)
+                                    <div class="d-flex align-items-center justify-content-center bg-body-tertiary rounded p-4" style="height: 150px;">
+                                        <img src="data:image/x-icon;base64,{{ $link->favicon }}"
+                                             alt="Favicon" style="max-height: 64px; max-width: 64px;">
+                                    </div>
                                 @else
-                                    -
+                                    <div class="d-flex align-items-center justify-content-center bg-body-tertiary rounded p-4" style="height: 150px;">
+                                        <img src="{{ url('images/logo.png') }}" alt="Default" style="max-height: 64px; max-width: 64px;">
+                                    </div>
                                 @endif
                             </div>
+                            @include('shared.show-text', ['label' => __('title'), 'value' => $link->title])
+                            @include('shared.show-link', ['label' => __('url'), 'href' => $link->url, 'value' => $link->formatted_url, 'target' => '_blank'])
+
+                            <div class="mb-3">
+                                <label class="form-label text-dark small fw-medium mb-1">{{ __('tags') }}</label>
+                                <div>
+                                    @if($link->tags->count())
+                                        @foreach($link->tags as $tag)
+                                            <span class="badge bg-light text-dark border">{{ $tag->name }}</span>
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
+                                </div>
+                            </div>
+
+                            @include('shared.show-bool', ['label' => __('archived'), 'value' => $link->is_archived])
                         </div>
 
-                        @include('shared.show-bool', ['label' => __('archived'), 'value' => $link->is_archived])
-                    </div>
-                    <div class="col-lg-6">
-                        @include('shared.show-text', ['label' => __('notes'), 'value' => $link->notes])
-                        @include('shared.show-date', ['label' => __('created'), 'value' => $link->created_at])
-                        @include('shared.show-date', ['label' => __('updated'), 'value' => $link->updated_at])
+                        <div class="col-lg-6">
+                            @include('shared.show-text', ['label' => __('notes'), 'value' => $link->notes])
+                            @include('shared.show-date', ['label' => __('created'), 'value' => $link->created_at])
+                            @include('shared.show-date', ['label' => __('updated'), 'value' => $link->updated_at])
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('modals.create-modal', ['route' => route('links.store'), 'input_name' => 'url', 'input_type' => 'url'])
+    @include('modals.create-modal', ['route' => route('links.store'), 'input_name' => 'url', 'input_type' => 'url'])
 @endsection
 

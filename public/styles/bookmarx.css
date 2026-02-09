@@ -12,20 +12,30 @@
 :root {
     --bs-primary: #e2444b;
     --bs-primary-rgb: 226, 68, 75;
-    --bs-link-color: #e2444b;
-    --bs-link-color-rgb: 226, 68, 75;
+    --bs-link-color: #c93a40;
+    --bs-link-color-rgb: 201, 58, 64;
     --bs-link-hover-color: #b5363c;
     --bs-link-hover-color-rgb: 181, 54, 60;
+    --bs-secondary-color: #6c757d;
+    --bs-body-color: #495057;
 }
 
-/* Link colors */
+/* Link colors - darker than labels */
 a {
     color: var(--bs-link-color);
 }
 
 a:hover {
-
     color: var(--bs-link-hover-color);
+}
+
+/* Labels use a different color */
+.form-label {
+    color: #495057 !important;
+}
+
+.text-dark {
+    color: #343a40 !important;
 }
 
 .btn-primary {
@@ -50,7 +60,33 @@ a:hover {
 
 /* Dashboard card image gradient background */
 .card .card-img-top {
-    background: linear-gradient(135deg, #ebf3f5 0%, #fdfef0 100%) !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+}
+
+/* Card footer styling */
+.card .card-footer {
+    background-color: #f8f9fa !important;
+}
+
+/* Better gray colors */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.bg-body-secondary {
+    background-color: #e9ecef !important;
+}
+
+.bg-body-tertiary {
+    background-color: #f1f3f5 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.text-body-secondary {
+    color: #6c757d !important;
 }
 
 /* Responsive width utilities for lg breakpoint */
@@ -58,17 +94,40 @@ a:hover {
     .w-lg-auto {
         width: auto !important;
     }
+
     .flex-lg-grow-0 {
         flex-grow: 0 !important;
     }
+
     .rounded-lg-3 {
         border-radius: var(--bs-border-radius-lg) !important;
     }
+
     .shadow-lg-sm {
         box-shadow: var(--bs-box-shadow-sm) !important;
     }
+
     .min-vh-lg-auto {
         min-height: auto !important;
     }
+
+}
+
+/* Card hover effect */
+.card-hover-move {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-hover-move:hover {
+    transform: translateY(-2px);
+}
+
+/* Link image styling - stretch for og_image, contain for favicon */
+.card .card-img-top.img-cover {
+    object-fit: cover;
+}
+
+.card .card-img-top.img-contain {
+    object-fit: contain;
 }
 
