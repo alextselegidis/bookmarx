@@ -46,17 +46,10 @@
 
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column py-3">
                                 @if(View::hasSection('breadcrumbs'))
                                     @yield('breadcrumbs')
                                 @endif
-                                <span class="navbar-brand fw-bolder text-body-secondary mb-0">
-                                    @if(View::hasSection('navTitle'))
-                                        @yield('navTitle')
-                                    @elseif(View::hasSection('pageTitle'))
-{{--                                        @yield('pageTitle')--}}
-                                    @endif
-                                </span>
                             </div>
                             @hasSection('navActions')
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

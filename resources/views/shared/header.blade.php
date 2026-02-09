@@ -6,9 +6,10 @@
  * @author      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) Alex Tselegidis
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        https://github.com/alextselegidis/bookmarx
+ * @link        https://bookmarx.org
  * ---------------------------------------------------------------------------- */
 --}}
+
 <div class="bg-primary">
     <div class="container">
         <div class="row">
@@ -26,21 +27,21 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <!-- Dashboard -->
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'fw-bold' : '' }}" href="{{ route('dashboard') }}">
+                                <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('dashboard') ? 'fw-bold' : '' }}" href="{{ route('dashboard') }}">
                                     <i class="bi bi-speedometer2 me-1"></i>
                                     {{ __('dashboard') }}
                                 </a>
                             </li>
                             <!-- Links -->
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ request()->routeIs('links*') ? 'fw-bold' : '' }}" href="{{ route('links') }}">
+                                <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('links*') ? 'fw-bold' : '' }}" href="{{ route('links') }}">
                                     <i class="bi bi-link-45deg me-1"></i>
                                     {{ __('links') }}
                                 </a>
                             </li>
                             <!-- Tags -->
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ request()->routeIs('tags*') ? 'fw-bold' : '' }}" href="{{ route('tags') }}">
+                                <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('tags*') ? 'fw-bold' : '' }}" href="{{ route('tags') }}">
                                     <i class="bi bi-tags me-1"></i>
                                     {{ __('tags') }}
                                 </a>

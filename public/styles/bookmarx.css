@@ -131,3 +131,29 @@ a:hover {
     object-fit: contain;
 }
 
+
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-item .nav-link.nav-menu-item {
+        min-width: 100px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        transition: background-color 0.2s ease;
+    }
+    .navbar-nav .nav-item .nav-link.nav-menu-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .navbar {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .navbar-brand {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
