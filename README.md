@@ -42,7 +42,7 @@ The application will allow you to manage and organize your bookmark links.
 
 ## Setup
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) and [Composer](https://getcomposer.org) installed on your computer. From your command line:
+To clone and run this application, you'll need Docker installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
@@ -52,10 +52,12 @@ $ git clone https://github.com/alextselegidis/bookmarx.git
 $ cd bookmarx
 
 # Install dependencies
-$ npm install && composer install
+$ docker compose up -d
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+Then you can SSH into the PHP-FPM container and install the dependencies with `composer install`. 
+
+Note: the current setup works with Windows and WSL & Docker.
 
 You can build the files by running `bash build.sh`. This command will bundle everything to a `build.zip` archive.
 
