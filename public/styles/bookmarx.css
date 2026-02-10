@@ -7,6 +7,16 @@
  * @license     https://opensource.org/licenses/GPL-3.0 - GPLv3
  * @link        https://github.com/alextselegidis/bookmarx
  * ---------------------------------------------------------------------------- */
+/* Global transition for smooth effects */
+*,
+*::before,
+*::after {
+    transition: background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out,
+                color 0.15s ease-in-out,
+                opacity 0.15s ease-in-out;
+}
 /* Override Bootstrap primary color */
 :root {
     --bs-primary: #e2444b;
@@ -99,7 +109,10 @@ a:hover {
 }
 /* Card hover effect */
 .card-hover-move {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out,
+                background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out;
 }
 .card-hover-move:hover {
     transform: translateY(-2px);
