@@ -27,7 +27,7 @@
         <div style="max-width: 600px" class="mx-auto my-4">
 
             <!-- Account Details Card -->
-            <h6 class="text-secondary fw-medium mb-3">{{ __('profile') }}</h6>
+            <h5 class="text-dark fw-bold mb-3">{{ __('profile') }}</h5>
 
             <div class="card shadow-sm border-0 rounded-3 mb-4">
                 <div class="card-body p-4">
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <!-- Change Password Section -->
-            <h6 class="text-secondary fw-medium mb-3">{{ __('password') }}</h6>
+            <h5 class="text-dark fw-bold mb-3">{{ __('password') }}</h5>
             <div class="card shadow-sm border-0 rounded-3">
                 <div class="card-body p-4">
                     <form action="{{ route('account.update') }}" method="POST" id="password-form">
