@@ -111,7 +111,7 @@
                             <a href="{{ $link->url }}" target="_blank" class="text-decoration-none">
                                 <div class="card-body">
                                     <h6 class="card-title text-body">
-                                        {{ $link->title ? Str::limit($link->title, 100) : 'No Title' }}
+                                        {{ $link->title ? Str::limit($link->title, 80) : 'No Title' }}
                                     </h6>
                                     <p class="card-text text-truncate small" style="color: #0d6efd;">
                                         {{ $link->formatted_url }}
