@@ -83,7 +83,7 @@
                                 <td class="border-0">
                                     @if($link->tags->count())
                                         @foreach($link->tags->take(3) as $tag)
-                                            <span class="badge bg-light text-dark">{{ $tag->name }}</span>
+                                            <span class="badge bg-success">{{ $tag->name }}</span>
                                         @endforeach
                                         @if($link->tags->count() > 3)
                                             <span class="badge bg-light text-muted">+{{ $link->tags->count() - 3 }}</span>
