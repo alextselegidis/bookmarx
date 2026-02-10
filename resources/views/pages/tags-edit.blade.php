@@ -26,7 +26,7 @@
 @section('navActions')
     <a href="#" class="nav-link me-lg-3" data-bs-toggle="modal" data-bs-target="#create-modal">
         <i class="bi bi-plus-square me-2"></i>
-        {{ __('create') }}
+        {{ __('add') }}
     </a>
 
     <form action="{{ route('tags.destroy', $tag->id) }}"
