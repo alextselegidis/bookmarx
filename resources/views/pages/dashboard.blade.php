@@ -93,7 +93,10 @@
                 @foreach($links as $link)
                     <div class="col">
                         <div class="card h-100 shadow-sm card-hover-move d-flex flex-column {{ $link->is_archived ? 'bg-opacity-10 bg-warning' : '' }}"
-                             style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
+                             style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};"
+                             data-bs-toggle="tooltip"
+                             data-bs-placement="top"
+                             data-bs-title="{{ $link->title ?: 'No Title' }}">
                             <a href="{{ $link->url }}" target="_blank" class="text-decoration-none">
                                 @if ($link->og_image)
                                     <img src="data:image/x-icon;base64,{{ $link->og_image }}"
@@ -111,7 +114,7 @@
                             <a href="{{ $link->url }}" target="_blank" class="text-decoration-none flex-grow-1 d-flex flex-column">
                                 <div class="card-body d-flex flex-column flex-grow-1">
                                     <h6 class="card-title text-body">
-                                        {{ $link->title ? Str::limit($link->title, 80) : 'No Title' }}
+                                        {{ $link->title ? Str::limit($link->title, 50) : 'No Title' }}
                                     </h6>
                                     <p class="card-text text-truncate small" style="color: #0d6efd;">
                                         {{ $link->formatted_url }}
@@ -169,4 +172,12 @@
         @endif
     </div>
     @include('modals.create-modal', ['route' => route('links.store'), 'title' => __('add'), 'input_name' => 'url', 'input_type' => 'url'])
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        });
+    </script>
 @endsection
