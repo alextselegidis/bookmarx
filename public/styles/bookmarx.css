@@ -136,7 +136,7 @@ a:hover {
 }
 @media (min-width: 992px) {
     .navbar-nav .nav-item .nav-link.nav-menu-item {
-        min-width: 100px;
+        min-width: 120px;
         text-align: center;
         display: flex;
         align-items: center;
