@@ -66,7 +66,7 @@
                                 </td>
                                 <td class="border-0 pe-4 text-end">
                                     <div class="dropdown" onclick="event.stopPropagation();">
-                                        <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                             {{ __('actions') }}
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
