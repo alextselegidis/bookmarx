@@ -92,7 +92,7 @@
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 @foreach($links as $link)
                     <div class="col">
-                        <div class="card h-100 shadow-sm card-hover-move {{ $link->is_archived ? 'bg-opacity-10 bg-warning' : '' }}"
+                        <div class="card h-100 shadow-sm card-hover-move d-flex flex-column {{ $link->is_archived ? 'bg-opacity-10 bg-warning' : '' }}"
                              style="border-bottom: 5px solid {{ $link->theme_color ?? '#dee2e6' }};">
                             <a href="{{ $link->url }}" target="_blank" class="text-decoration-none">
                                 @if ($link->og_image)
@@ -108,15 +108,15 @@
                                          alt="Favicon" style="width: 100%; height: 150px; object-fit: contain;">
                                 @endif
                             </a>
-                            <a href="{{ $link->url }}" target="_blank" class="text-decoration-none">
-                                <div class="card-body">
+                            <a href="{{ $link->url }}" target="_blank" class="text-decoration-none flex-grow-1 d-flex flex-column">
+                                <div class="card-body d-flex flex-column flex-grow-1">
                                     <h6 class="card-title text-body">
                                         {{ $link->title ? Str::limit($link->title, 80) : 'No Title' }}
                                     </h6>
                                     <p class="card-text text-truncate small" style="color: #0d6efd;">
                                         {{ $link->formatted_url }}
                                     </p>
-                                    <div class="mb-2" style="min-height: 24px;">
+                                    <div class="mt-auto" style="min-height: 24px;">
                                         @if ($link->tags()->count())
                                             @foreach($link->tags as $tag)
                                                 <span class="badge bg-dark">
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="card-footer bg-body-secondary text-muted small d-flex align-items-center">
+                            <div class="card-footer bg-body-secondary text-muted small d-flex align-items-center mt-auto">
                                 {{ $link->created_at->locale(app()->getLocale())->isoFormat('L LT') }}
                                 <a href="{{ route('links.edit', ['link' => $link]) }}" class="ms-auto" title="{{ __('edit') }}">
                                     <i class="bi bi-pencil"></i>
