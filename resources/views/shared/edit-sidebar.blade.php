@@ -51,17 +51,21 @@
 </div>
 <!-- Desktop Sidebar -->
 <div class="d-none d-lg-block">
-    <ul class="nav flex-column">
-        @foreach($items as $item)
-            <li class="nav-item">
-                <a class="nav-link px-0 py-2 d-flex align-items-center {{ $activeRoute === $item['route'] ? 'text-primary fw-medium' : 'text-body' }}"
-                   href="{{ route($item['route'], $item['params'] ?? []) }}">
-                    @if(isset($item['icon']))
-                        <i class="bi bi-{{ $item['icon'] }} me-3 text-muted"></i>
-                    @endif
-                    {{ $item['label'] }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-3">
+            <ul class="nav flex-column">
+                @foreach($items as $item)
+                    <li class="nav-item">
+                        <a class="nav-link px-2 py-2 rounded d-flex align-items-center {{ $activeRoute === $item['route'] ? 'bg-primary text-white fw-medium' : 'text-body' }}"
+                           href="{{ route($item['route'], $item['params'] ?? []) }}">
+                            @if(isset($item['icon']))
+                                <i class="bi bi-{{ $item['icon'] }} me-2 {{ $activeRoute === $item['route'] ? '' : 'text-muted' }}"></i>
+                            @endif
+                            {{ $item['label'] }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 </div>
