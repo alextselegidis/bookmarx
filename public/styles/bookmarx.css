@@ -54,19 +54,24 @@ a:hover {
 .card .card-img-top {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
 }
-/* Card footer styling */
+/* Improved card footer styling - subtle warm gray */
 .card .card-footer {
-    background-color: #f8f9fa !important;
+    background-color: #f5f5f5 !important;
+    border-top-color: #e8e8e8 !important;
 }
-/* Better gray colors */
+/* Improved background colors - warmer and softer */
 .bg-light {
-    background-color: #f8f9fa !important;
+    background-color: #fafafa !important;
 }
 .bg-body-secondary {
-    background-color: #e9ecef !important;
+    background-color: #f5f5f5 !important;
 }
 .bg-body-tertiary {
-    background-color: #f1f3f5 !important;
+    background-color: #f8f8f8 !important;
+}
+/* Main layout background - softer */
+.main-layout {
+    background-color: #f5f6f8 !important;
 }
 .text-muted {
     color: #6c757d !important;
