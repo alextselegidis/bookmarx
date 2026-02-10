@@ -178,3 +178,23 @@ a:hover {
 .table-dark th a:hover::after {
     opacity: 0.6;
 }
+/* Table header sorting hover effect */
+.table-dark th a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+.table-dark th a:hover {
+    opacity: 0.8;
+}
+.table-dark th a::after {
+    content: '\F282';
+    font-family: 'bootstrap-icons';
+    margin-left: 0.5rem;
+    opacity: 0;
+    font-size: 0.75rem;
+    transition: opacity 0.15s ease-in-out;
+}
+.table-dark th a:hover::after {
+    opacity: 0.6;
+}
