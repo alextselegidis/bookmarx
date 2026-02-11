@@ -28,21 +28,21 @@
                             <!-- Dashboard -->
                             <li class="nav-item">
                                 <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('dashboard') ? 'fw-bold' : '' }}" href="{{ route('dashboard') }}">
-                                    <i class="bi bi-speedometer2 me-1"></i>
+                                    <i class="bi bi-house me-2"></i>
                                     {{ __('dashboard') }}
                                 </a>
                             </li>
                             <!-- Links -->
                             <li class="nav-item">
                                 <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('links*') ? 'fw-bold' : '' }}" href="{{ route('links') }}">
-                                    <i class="bi bi-link-45deg me-1"></i>
+                                    <i class="bi bi-link-45deg me-2"></i>
                                     {{ __('links') }}
                                 </a>
                             </li>
                             <!-- Tags -->
                             <li class="nav-item">
                                 <a class="nav-link nav-menu-item text-white py-lg-4 {{ request()->routeIs('tags*') ? 'fw-bold' : '' }}" href="{{ route('tags') }}">
-                                    <i class="bi bi-tags me-1"></i>
+                                    <i class="bi bi-tags me-2"></i>
                                     {{ __('tags') }}
                                 </a>
                             </li>
