@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add page leave prompt for saving missing data 
+
 ### Changed
+
 - Delete link now returns to the dashboard page after deletion
 - About page content updated and GitHub link added
 - Locale selection is now a dropdown list in settings
