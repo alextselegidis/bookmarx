@@ -25,6 +25,7 @@
   <a href="#features">Features</a> •
   <a href="#setup">Setup</a> •
   <a href="#installation">Installation</a> •
+  <a href="#demo-data">Demo Data</a> •
   <a href="#license">License</a>
 </p>
 
@@ -78,6 +79,36 @@ That's it! You can now use Bookmarx at your will.
 You will find the latest release at [github.com/alextselegidis/bookmarx](github.com/alextselegidis/bookmarx).
 You can also report problems on the [issues page](https://github.com/alextselegidis/bookmarx/issues)
 and help the development progress.
+
+## Demo Data
+
+A dedicated `DemoSeeder` is available to populate the database with realistic
+sample content (1 admin, 2 standard users, 50 curated bookmarks with tags,
+roughly a third of which are archived). It is **not** wired into
+`DatabaseSeeder` and will never run automatically — you have to invoke it
+explicitly:
+
+```bash
+php artisan db:seed --class=DemoSeeder
+```
+
+The seeder is idempotent, so it can be re-run safely without producing
+duplicate users, tags or links.
+
+Demo accounts created (password for all: `12345678`):
+
+| Role  | Email               |
+|-------|---------------------|
+| admin | admin@example.org   |
+| user  | alice@example.org   |
+| user  | bob@example.org     |
+
+To start from a clean state and reseed everything in one go:
+
+```bash
+php artisan migrate:fresh
+php artisan db:seed --class=DemoSeeder
+```
 
 ## License
 
