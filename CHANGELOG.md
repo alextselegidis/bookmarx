@@ -5,6 +5,11 @@
 ### Added
 
 - Add page leave prompt for saving missing data 
+- Add DemoSeeder for populating the database with sample data
+
+### Fixed
+
+- Remember me functionality now works reliably (custom session guard with unique recaller cookie name)
 
 ### Changed
 
